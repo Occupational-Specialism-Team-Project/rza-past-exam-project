@@ -7,6 +7,8 @@ function redirect($url) {
     exit();
 }
 
+require_once "connect.php";
+
 $start_session = session_start();
 if (! $start_session) {
     redirect("error.php");
