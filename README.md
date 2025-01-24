@@ -7,4 +7,4 @@ This is for the Occupational Specialism group project on a past exam paper (RZA 
 ## Instructions
 
 1. Clone in `"C:/xampp/htdocs"` to use and develop.
-2. Make sure to read the [style guide]("documents/project/RZA Project Style Guide.pdf") before contributing
+2. Make sure to read the [style guide](documents/project/RZA%20Project%20Style%20Guide.pdf) before contributing
