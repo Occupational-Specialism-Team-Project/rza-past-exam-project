@@ -54,6 +54,117 @@ include_once "include/base.php";
             </div>
         </div>
     </section>
+    <section class="row mx-auto">
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Zoo Bookings & Reservations</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-hippo text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">Book and reserve zoo tickets.</p>
+                    <a href="#" class="btn btn-primary">Navigate Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Hotel Bookings</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-hotel text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">Check availability and book a hotel in advance.</p>
+                    <a href="#" class="btn btn-primary">Navigate Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Loyalty & Reward Scheme</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-tag text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">Conditional discounts with code redemption.</p>
+                    <a href="#" class="btn btn-primary">Navigate Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Educational Materials</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-school text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">Provision of materials for educational visits.</p>
+                    <a href="#" class="btn btn-primary">Navigate Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Help & Information</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-circle-info text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">View help and information about the attractions and facilities.</p>
+                    <a href="#" class="btn btn-primary">Navigate Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Account Settings</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-user text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">View account settings, including accessibility features.</p>
+                    <a href="#" class="btn btn-primary">Navigate Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Register Account</h5>
+                </div>
+                <i class="card-img-top fa-regular fa-user text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">Sign up / register an account with RZA.</p>
+                    <a href="#" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Log In</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-right-to-bracket text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Log In</h5>
+                    <p class="card-text">Log into an existing account.</p>
+                    <a href="#" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-5">
+            <div class="card" style="height: 400px">
+                <div class="card-header">
+                    <h5 class="card-title">Log Out</h5>
+                </div>
+                <i class="card-img-top fa-solid fa-arrow-right-to-bracket text-center p-3" style="font-size: 10rem"></i>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <p class="card-text">Log out of the currently logged-into account.</p>
+                    <a href="#" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </article>
 
 <?php include_once "include/footer.php";
