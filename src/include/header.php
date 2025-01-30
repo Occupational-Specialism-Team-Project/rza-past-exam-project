@@ -34,6 +34,10 @@
                         <a class="nav-link<?php if (PAGE_TITLE == "Attractions & Facilities"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Attractions & Facilities"): echo "aria-current='page'"; endif ?> href="index.php">Attractions & Facilities</a>
                     </li>
                 </ul>
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </div>
             </div>
         </div>
     </nav>
