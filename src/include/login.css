@@ -1,3 +1,8 @@
 #acc-input {
     border: 1px solid black;
+    margin-top: 100px;
+}
+#bttn{
+    float: inline-end;
+    border: 1px solid black;
 }

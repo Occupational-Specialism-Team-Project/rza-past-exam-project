@@ -11,7 +11,6 @@ require_once "include/utils.php";?>
             $fetch_record = $prepare_select_statement->fetch();
             if($fetch_record && password_verify($password, $fetch_record['password'])){
                 $_SESSION['username'] = $fetch_record['username'];
-                echo $_SESSION['username'];
                 echo "<script>
                 alert('valid login')
               </script>";
@@ -37,8 +36,8 @@ include_once "include/base.php";
     <form method = "post" >
         <input id="acc-input" name ="username" type="text" class="form-control mt-5 p-3 "  placeholder="Enter your username">
         <input id="acc-input" name="password" type="password" class="form-control mt-5 p-3" placeholder="Enter your password">
-        <button type="submit" name="login">submit</button>
-        <a href='sign_up.php'><button>Sign-up</a></button>
+        <button  type="submit" name="login" class="mt-3 mx-auto col-2 rounded">submit</button>
+        <a href='sign_up.php'><button type="button" id="bttn" class="mt-3 mx-auto col-2 rounded">Sign-up</button></a>
     </form>
 </div>
 <?php include_once "include/footer.php";
