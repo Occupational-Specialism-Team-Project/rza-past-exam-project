@@ -18,6 +18,21 @@
                     <li class="nav-item">
                         <a class="nav-link<?php if (PAGE_TITLE == "Example Template"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Example Template"): echo "aria-current='page'"; endif ?> href="example_template.php">Example</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link<?php if (PAGE_TITLE == "Learning Material"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Learning Material"): echo "aria-current='page'"; endif ?> href="index.php">Learning Material</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle<?php if (PAGE_TITLE == "Zoo Bookings" or PAGE_TITLE == "Hotel Bookings"): echo " active"; endif ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Bookings
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Zoo Bookings"): echo " active"; endif ?>" href="#">Zoo</a></li>
+                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Hotel Bookings"): echo " active"; endif ?>" href="#">Hotel</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link<?php if (PAGE_TITLE == "Attractions & Facilities"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Attractions & Facilities"): echo "aria-current='page'"; endif ?> href="index.php">Attractions & Facilities</a>
+                    </li>
                 </ul>
             </div>
         </div>
