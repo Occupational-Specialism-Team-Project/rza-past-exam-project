@@ -26,12 +26,13 @@ include_once "include/base.php";
 ?>
 <div class="container">
         <form method = "post" >
-            <h1 class="text-center">Riget Zoo Adventures</h1>
-            <h1 class="text-center">sign up</h1>
-            <input name ="username" type="text" class="form-control"  placeholder="Enter your username">
-            <input name="password" type="password" class="form-control" placeholder="Enter your password">
-            <button type="submit" name="login">submit</button>
-            <a href='login.php?'><button>login</button></a>
+            <h1  class="text-center">Riget Zoo Adventures</h1>
+            <h1 class="text-center">Sign Up</h1>
+            <input id="acc-input" name ="username" type="text" class="form-control mt-5 p-3"  placeholder="Enter your username">
+            <input id="acc-input" name="password" type="password" class="form-control mt-5 p-3" placeholder="Enter your password">
+            <button type="submit" name="login" class="mx-auto">submit</button>
+            <a href='login.php'><button class="mx-auto">login</button></a>
+            
         </form>
     </div>
 <?php include_once "include/footer.php";
