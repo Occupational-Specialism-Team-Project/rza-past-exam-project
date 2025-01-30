@@ -12,7 +12,7 @@ include_once "include/base.php";
 
 ?>
 
-<article class="container-fluid">
+<article class="container-fluid my-3">
     <section class="row mb-5">
         <div class="col-md-8 mx-auto">
             <div class="card">
