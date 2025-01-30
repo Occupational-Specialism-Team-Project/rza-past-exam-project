@@ -2,12 +2,7 @@
 
 try {
     $settings = parse_ini_file("db_settings.ini");
-    $dsn = "mysql:
-            host=". $settings['host'] . ";" .
-            "dbname=". $settings['dbname'] . ";" .
-            "username=". $settings['username'] . ";" .
-            "password=". $settings['password'] . ";"
-    ;
+    $dsn = $settings["driver"] . ":host=". $settings['host'] . ";dbname=". $settings['dbname'];
 
     // create a PDO instance
     $pdo = new PDO($dsn, $settings["username"], $settings["password"]);
