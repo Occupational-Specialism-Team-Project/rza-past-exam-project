@@ -1,8 +1,8 @@
-#acc-input {
+.account-input{
     border: 1px solid black;
     margin-top: 100px;
 }
-#bttn{
+.login-signup-button{
     float: inline-end;
     border: 1px solid black;
 }

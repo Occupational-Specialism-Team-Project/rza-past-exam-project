@@ -34,10 +34,10 @@ include_once "include/base.php";
  <h1 class="text-center">Riget Zoo Adventures</h1>
  <h1 class="text-center">Log-in</h1>
     <form method = "post" >
-        <input id="acc-input" name ="username" type="text" class="form-control mt-5 p-3 "  placeholder="Enter your username">
-        <input id="acc-input" name="password" type="password" class="form-control mt-5 p-3" placeholder="Enter your password">
+        <input  name ="username" type="text" class="form-control mt-5 p-3 account-input"  placeholder="Enter your username">
+        <input name="password" type="password" class="form-control mt-5 p-3 account-input" placeholder="Enter your password">
         <button  type="submit" name="login" class="mt-3 mx-auto col-2 rounded">submit</button>
-        <a href='sign_up.php'><button type="button" id="bttn" class="mt-3 mx-auto col-2 rounded">Sign-up</button></a>
+        <a href='sign_up.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button">Sign-up</button></a>
     </form>
 </div>
 <?php include_once "include/footer.php";
