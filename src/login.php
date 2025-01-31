@@ -37,7 +37,7 @@ include_once "include/base.php";
         <input  name ="username" type="text" class="form-control mt-5 p-3 account-input"  placeholder="Enter your username">
         <input name="password" type="password" class="form-control mt-5 p-3 account-input" placeholder="Enter your password">
         <button  type="submit" name="login" class="mt-3 mx-auto col-2 rounded btn btn-success">submit</button>
-        <a href='sign_up.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button">Sign-up</button></a>
+        <a href='sign_up.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn btn-primary">Sign-up</button></a>
     </form>
 </div>
 <?php include_once "include/footer.php";
