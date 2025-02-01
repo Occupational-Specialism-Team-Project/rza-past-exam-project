@@ -10,7 +10,7 @@ require_once "include/utils.php";?>
             $prepare_select_statement -> execute(array(":username" => $username));
             $fetch_record = $prepare_select_statement->fetch();
             if($fetch_record && password_verify($password, $fetch_record['password'])){
-                $_SESSION['username'] = $fetch_record['username'];
+                $_SESSION['user'] = $fetch_record['username'];
                 echo "<script>
                 alert('valid login')
               </script>";
