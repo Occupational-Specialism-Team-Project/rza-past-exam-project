@@ -24,8 +24,11 @@
                 color: #645452;
             }
 
+            .shadow-up {
+                box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.15);
+            }
         </style>
     </head>
     <body>
         <?php include "header.php" ?>
-        <main>
+        <main style="min-height: 80vh">
