@@ -13,6 +13,17 @@
                 min-height:25vh;
                 width: 100%;
             }
+
+            .rza-green {
+                background-color: #4B6F44;
+            }
+
+            .rza-brand {
+                text-shadow: -1px -1px 0 lightgray, 0.5px -1px 0 lightgray, -1px 0.5px 0 lightgray, 0.5px 0.5px 0 lightgray;
+                font-weight: bold;
+                color: #645452;
+            }
+
         </style>
     </head>
     <body>
