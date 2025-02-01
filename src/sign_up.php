@@ -13,11 +13,16 @@ if(isset($_POST['login'])){
               ':password'=>$passwordhash,
              ));
              if($insertdata){
-                 echo("inserted");
+                 echo'<script> alert ("Data is updated")</script>';
               }else{
                  echo'<script> alert ("Data Not Updated")</script>';
               }
+           }else{
+            echo'<script> alert ("Data Not Updated")</script>';
            }
+        }else{
+            echo'<script> alert ("Data Not Updated")</script>';
+            
         }
     }
 const PAGE_TITLE = "Sign-up Page";
@@ -30,7 +35,7 @@ include_once "include/base.php";
             <input name ="username" type="text" class=" form-control mt-5 p-3 account-input "  placeholder="Enter your username" require>
             <input name="password" type="password" class=" form-control mt-5 p-3 account-input " placeholder="Enter your password" require>
             <button type="submit" name="login" class="mt-3 mx-auto col-2 rounded btn btn-success">submit</button>
-            <a href='login.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn-primary">login</button></a>
+            <a href='login.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn btn-primary">login</button></a>
             
         </form>
     </div>
