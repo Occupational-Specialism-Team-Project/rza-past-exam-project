@@ -30,15 +30,18 @@ require_once "include/utils.php";?>
 const PAGE_TITLE = "Login Page";
 include_once "include/base.php";
 ?>
-<div class="container">
- <h1 class="text-center">Riget Zoo Adventures</h1>
- <h1 class="text-center">Log-in</h1>
+<div class="card" style="width: 100%">
     <form method = "post" >
-        <input  name ="username" type="text" class="form-control mt-5 p-3 account-input"  placeholder="Enter your username" require>
-        <input name="password" type="password" class="form-control mt-5 p-3 account-input" placeholder="Enter your password" require>
-        <button  type="submit" name="login" class="mt-3 mx-auto col-2 rounded btn btn-success">submit</button>
-        <a href='sign_up.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn btn-primary">Sign-up</button></a>
+        <div class="card-body">
+            <h1  class="text-center card-title">Riget Zoo Adventures</h1>
+            <h1 class="text-center card-title">Login</h1>
+            <input name ="username" type="text" class=" form-control mt-5 p-3 account-input card-input "  placeholder="Enter your username" require>
+            <input name="password" type="password" class=" form-control mt-5 p-3 account-input card-input " placeholder="Enter your password" require>
+            <button type="submit" name="login" class="mt-3 mx-auto col-2 rounded btn btn-success card-button">submit</button>
+            <a href='sign_up.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn btn-primary card-button">sign-up</button></a>
+        </div>
     </form>
 </div>
+
 <?php include_once "include/footer.php";
     
