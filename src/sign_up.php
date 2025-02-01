@@ -27,8 +27,8 @@ include_once "include/base.php";
         <form method = "post" >
             <h1  class="text-center">Riget Zoo Adventures</h1>
             <h1 class="text-center">Sign Up</h1>
-            <input name ="username" type="text" class=" form-control mt-5 p-3 account-input "  placeholder="Enter your username">
-            <input name="password" type="password" class=" form-control mt-5 p-3 account-input " placeholder="Enter your password">
+            <input name ="username" type="text" class=" form-control mt-5 p-3 account-input "  placeholder="Enter your username" require>
+            <input name="password" type="password" class=" form-control mt-5 p-3 account-input " placeholder="Enter your password" require>
             <button type="submit" name="login" class="mt-3 mx-auto col-2 rounded btn btn-success">submit</button>
             <a href='login.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn-primary">login</button></a>
             

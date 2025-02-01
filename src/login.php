@@ -34,8 +34,8 @@ include_once "include/base.php";
  <h1 class="text-center">Riget Zoo Adventures</h1>
  <h1 class="text-center">Log-in</h1>
     <form method = "post" >
-        <input  name ="username" type="text" class="form-control mt-5 p-3 account-input"  placeholder="Enter your username">
-        <input name="password" type="password" class="form-control mt-5 p-3 account-input" placeholder="Enter your password">
+        <input  name ="username" type="text" class="form-control mt-5 p-3 account-input"  placeholder="Enter your username" require>
+        <input name="password" type="password" class="form-control mt-5 p-3 account-input" placeholder="Enter your password" require>
         <button  type="submit" name="login" class="mt-3 mx-auto col-2 rounded btn btn-success">submit</button>
         <a href='sign_up.php'><button type="button" class="mt-3 mx-auto col-2 rounded login-signup-button btn btn-primary">Sign-up</button></a>
     </form>
