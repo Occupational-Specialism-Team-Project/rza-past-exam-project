@@ -35,7 +35,7 @@
                     </li>
                 </ul>
                 <div class="dropdown">
-                    <button class="btn <?=isset($_SESSION["user"]) ? "btn-success" : "btn-outline-secondary"?> dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn <?=isset($_SESSION["user"]) ? "btn-success" : "btn-outline-light"?> dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="<?=isset($_SESSION["user"]) ? "fa-solid" : "fa-regular"?> fa-user"></i>
                         <?=$_SESSION["user"] ?? "Not logged in"?>
                     </button>
