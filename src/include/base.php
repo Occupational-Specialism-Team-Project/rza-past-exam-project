@@ -1,4 +1,10 @@
-<?php include_once "include/utils.php" ?>
+<?php
+
+// Utilities are included here, but it should still be included in your page where base.php is included.
+// (This line is added to avoid possible errors)
+include_once "include/utils.php"
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
