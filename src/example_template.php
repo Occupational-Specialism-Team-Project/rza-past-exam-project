@@ -39,7 +39,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus nobis ipsa
 aliquam tempora voluptatem temporibus esse?
 Aut id ipsam nemo quisquam quidem deserunt eligendi.
 </p>
-<button>Lorem ipsum dolor sit amet consectetur adipisicing elit.</button>
+<button type="button">Lorem ipsum dolor sit amet consectetur adipisicing elit.</button>
 
 <!-- Don't forget to include the footer at the end so the closing tags can work with the remaining base content -->
 <!-- Footer already includes any external JavaScript or JS CDNs (e.g. Bootstrap, Popper) -->
