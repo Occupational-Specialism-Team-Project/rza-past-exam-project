@@ -5,6 +5,20 @@
 // so it can be used across different pages.
 require_once "include/utils.php";
 
+// Here is where you will put PHP code such as helper functions, SQL queries, request/form handling,
+// session handling, file handling, validation etc.
+//
+// For example:
+//
+// function helper_function() {
+//     do_pdo_thing();
+//
+//     return fetch();
+// }
+// if (isset($_POST["submit"])) {
+//     data = helper_function();
+// }
+
 // This will decide the name of the <title> element in `base.php` (name assigned to the tab).
 const PAGE_TITLE = "Example Template";
 include_once "include/base.php";
