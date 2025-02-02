@@ -22,6 +22,8 @@ require_once "include/utils.php";
 // }
 
 // This will decide the name of the <title> element in `base.php` (name assigned to the tab).
+// WARNING - if it is not set, this will cause an error of undefined constant. This is *intentional behaviour*
+// as the page should not load if the title is set incorrectly so the programmer does not ignore the problem.
 const PAGE_TITLE = "Example Template";
 include_once "include/base.php";
 
