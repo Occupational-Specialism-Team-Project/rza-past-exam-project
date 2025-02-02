@@ -1,6 +1,8 @@
 <?php
 
 // This connects to the database and starts a session.
+// The database connection is accessible with the global variable $pdo.
+// Database settings are changed in include/db_settings.ini
 // It also provides several utility functions that wrap common functionality
 // so it can be used across different pages.
 require_once "include/utils.php";
