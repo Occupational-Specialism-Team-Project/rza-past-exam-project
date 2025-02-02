@@ -31,7 +31,7 @@ include_once "include/base.php";
 
 ?>
 
-<!-- Place your HTML here -->
+<!-- Place your HTML content here -->
 <h1><?=PAGE_TITLE?></h1>
 <p>This is an example template for what PHP pages/scripts should be formatted like.</p>
 <p>
