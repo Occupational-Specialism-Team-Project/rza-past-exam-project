@@ -26,6 +26,8 @@ require_once "include/utils.php";
 // as the page should not load if the title is set incorrectly so the programmer does not ignore the problem.
 const PAGE_TITLE = "Example Template";
 include_once "include/base.php";
+// base.php already includes all of the HTML boilerplate, such as <head>, <body>, <title>, and DOCTYPE
+// Any extra <link> elements the programmer wishes to add should go in base.php (see comments there)
 
 ?>
 
@@ -40,4 +42,5 @@ Aut id ipsam nemo quisquam quidem deserunt eligendi.
 <button>Lorem ipsum dolor sit amet consectetur adipisicing elit.</button>
 
 <!-- Don't forget to include the footer at the end so the closing tags can work with the remaining base content -->
+<!-- Footer already includes any external JavaScript or JS CDNs (e.g. Bootstrap, Popper) -->
 <?php include_once "include/footer.php";
