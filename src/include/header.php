@@ -41,11 +41,11 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <?php if (! isset($_SESSION["user"])): ?>
-                            <li><a class="dropdown-item" href="#">
+                            <li><a class="dropdown-item" href="login.php">
                                 <i class="fa-solid fa-right-from-bracket"></i>
                                 Log in
                             </a></li>
-                            <li><a class="dropdown-item" href="#">
+                            <li><a class="dropdown-item" href="sign_up.php">
                                 <i class="fa-solid fa-user-plus"></i>
                                 Sign up
                             </a></li>
@@ -54,7 +54,7 @@
                                 <i class="fa-solid fa-gear"></i>
                                 Settings
                             </a></li>
-                            <li><a class="dropdown-item" href="#">
+                            <li><a class="dropdown-item" href="logout.php">
                                 <i class="fa-solid fa-right-from-bracket"></i>
                                 Log out
                             </a></li>
