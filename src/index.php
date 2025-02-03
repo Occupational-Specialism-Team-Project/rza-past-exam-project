@@ -2,11 +2,6 @@
 
 require_once "include/utils.php";
 
-// Change the value of the session variables and the content displayed will change
-$_SESSION["user"] = "jayden";
-$_SESSION["role"] = "customer";
-#$_SESSION["role"] = "admin";
-
 const PAGE_TITLE = "Home Page";
 include_once "include/base.php";
 
