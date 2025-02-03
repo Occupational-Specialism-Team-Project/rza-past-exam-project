@@ -1,6 +1,8 @@
 <?php
-  session_start();
+  require_once "include/utils.php";
+
   session_unset();
   session_destroy();
-//   we can then send the user back to the front page using location
+
+  redirect("index.php");
 ?>
