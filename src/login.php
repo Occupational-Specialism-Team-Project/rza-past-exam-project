@@ -14,7 +14,6 @@ require_once "include/utils.php";?>
                 echo "<script>
                 alert('valid login')
               </script>";
-            // we can then change the window when the home page is done
             }else{
                 echo "<script>
                 alert('invalid login')
@@ -30,7 +29,7 @@ require_once "include/utils.php";?>
 const PAGE_TITLE = "Login Page";
 include_once "include/base.php";
 ?>
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card" style="width: 100%">
