@@ -14,6 +14,8 @@ require_once "include/utils.php";?>
                 echo "<script>
                 alert('valid login')
               </script>";
+              echo"<script> alert(window.location.href='index.php')</script>";
+
             }else{
                 echo "<script>
                 alert('invalid login')
