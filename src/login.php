@@ -12,11 +12,8 @@ require_once "include/utils.php";?>
             if($fetch_record && password_verify($password, $fetch_record['password'])){
                 $_SESSION['user'] = $fetch_record['username'];
                 $_SESSION['role'] = $fetch_record['role_name'];
-
-                echo "<script>
-                alert('valid login')
-              </script>";
-              echo"<script> alert(window.location.href='index.php')</script>";
+              redirect("index.php");
+              
 
 
             }else{
