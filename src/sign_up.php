@@ -30,7 +30,7 @@ if(isset($_POST['login'])){
 
 
              if($result){
-                 echo'<script> alert ("Data is updated")</script>';
+                 redirect("login.php");
               }else{
                  echo'<script> alert ("Data Not Updated")</script>';
               }
