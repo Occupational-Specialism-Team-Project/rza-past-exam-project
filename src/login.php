@@ -46,8 +46,8 @@ include_once "include/base.php";
                     <div class="card-body">
                         <input name ="username" type="text" class=" form-control mt-5 p-3 account-input card-input "  placeholder="Enter your username" required>
                         <input name="password" type="password" class=" form-control mt-5 p-3 account-input card-input " placeholder="Enter your password" required>
-                        <button type="submit" name="login" class="mt-3 mx-auto  btn btn-success submit-button">submit</button>
-                        <a href='sign_up.php'><button type="button" class="mt-3 mx-auto login-signup-button btn btn-primary">sign-up</button></a>
+                        <button type="submit" name="login" class="mt-3 mx-auto  btn btn-success submit-button">Submit</button>
+                        <a href='sign_up.php'><button type="button" class="mt-3 mx-auto login-signup-button btn btn-primary">Sign-up</button></a>
                         
                     </div>
                 </form>
