@@ -5,16 +5,19 @@ require_once "include/utils.php";?>
         $username =($_POST['username']);
         $password =($_POST['password']);
         if(!empty($username) && !empty($password)){
-            $select_user = "SELECT username , password FROM users WHERE username = :username";
+            $select_user = "SELECT username , password , role_name FROM users WHERE username = :username";
             $prepare_select_statement = $pdo->prepare($select_user);
             $prepare_select_statement -> execute(array(":username" => $username));
             $fetch_record = $prepare_select_statement->fetch();
             if($fetch_record && password_verify($password, $fetch_record['password'])){
                 $_SESSION['user'] = $fetch_record['username'];
+                $_SESSION['role'] = $fetch_record['role_name'];
+
                 echo "<script>
                 alert('valid login')
               </script>";
               echo"<script> alert(window.location.href='index.php')</script>";
+
 
             }else{
                 echo "<script>
