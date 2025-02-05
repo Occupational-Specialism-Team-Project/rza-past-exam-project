@@ -47,7 +47,7 @@ include_once "include/base.php";
 
 <article class="container-fluid">
     <div class="row">
-        <section class="mx-auto col-md-4 mt-5">
+        <section class="mx-auto col-md-5 mt-5">
             <div class="card">
                 <div class="card-header">
                     <h1 class="text-center"><?=PAGE_TITLE?></h1>
@@ -83,7 +83,27 @@ include_once "include/base.php";
                     <div class="row">
                         <?=var_dump($zoo_visit)?>
                     </div>
+                </form>
+            </div>
+        </section>
+        <section class="mx-auto col-md-5 mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center mb-4">Here are days that are fully booked up:</h1>
+                </div>
+                <form class="card-body container">
+                    <div class="row mb-4">
+                        <div class="mb-3 col-md-8">
+                            <label for="month" class="form-label">Number of people:</label>
+                            <input type="month" class="form-control" id="month" name="month" required>
+                        </div>
+                    </div>
+                    <div id="calendar">
 
+                    </div>
+                    <div class="row mb-4">
+                        <button type="button" class="btn btn-success float-end" onclick="get_booked_days(document.getElementById('month').value)">Reserve a ticket</button>
+                    </div>
                 </form>
             </div>
         </section>
