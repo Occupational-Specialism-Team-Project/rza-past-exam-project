@@ -112,22 +112,18 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
-  ADD KEY `role` (`role_name`);
 
 --
 -- Indexes for table `visits`
 --
 ALTER TABLE `visits`
-  ADD PRIMARY KEY (`visit_id`),
-  ADD KEY `visits_zoo_booking_id` (`zoo_booking_id`),
-  ADD KEY `visits_hotel_booking_id` (`hotel_booking_id`);
+  ADD PRIMARY KEY (`visit_id`);
 
 --
 -- Indexes for table `zoo_bookings`
 --
 ALTER TABLE `zoo_bookings`
-  ADD PRIMARY KEY (`zoo_booking_id`),
-  ADD KEY `zoo_booking_username` (`username`);
+  ADD PRIMARY KEY (`zoo_booking_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
