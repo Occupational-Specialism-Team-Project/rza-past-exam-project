@@ -13,6 +13,15 @@ if ($_SESSION["role"] != "customer") {
     redirect("index.php");
 }
 
+if (isset($_POST["book_ticket"])) {
+    $zoo_visit = book_zoo_visit(
+        $user,
+        $_POST["start_datetime"], $_POST["end_datetime"],
+        $_POST["number_of_people"], $_POST["educational_visit"] ?? FALSE,
+        $pdo
+    );
+}
+
 const PAGE_TITLE = "Zoo Booking";
 include_once "include/base.php";
 
