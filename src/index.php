@@ -114,7 +114,7 @@ include_once "include/base.php";
                             <i class="card-img-top fa-solid fa-hippo text-center p-3" style="font-size: 10rem"></i>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <p class="card-text">Book and reserve zoo tickets.</p>
-                                <a href="#" class="btn btn-primary">Navigate Here</a>
+                                <a href="zoo_booking.php" class="btn btn-primary">Navigate Here</a>
                             </div>
                         </div>
                     </div>
