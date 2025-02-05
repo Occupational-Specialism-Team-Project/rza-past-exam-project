@@ -31,6 +31,21 @@ CREATE TABLE `hotel_bookings` (
   `hotel_booking_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `role_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_name`) VALUES
+('admin'),
+('customer');
+
 -- --------------------------------------------------------
 
 --
@@ -39,15 +54,13 @@ CREATE TABLE `hotel_bookings` (
 
 CREATE TABLE `users` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(64) NOT NULL
+  `password` varchar(64) NOT NULL,
+  `role_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
-
-INSERT INTO `users` (`username`, `password`) VALUES
-('jayden123', '$2y$10$mNVJoTgJHL0FUEHo307VjOL3M.CHLnEQZeFtOoRW3wokQPnavmP46');
 
 -- --------------------------------------------------------
 
@@ -75,6 +88,10 @@ CREATE TABLE `zoo_bookings` (
   `number_of_people` int(100) NOT NULL DEFAULT 1,
   `educational_visit` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `users` (`username`, `password`, `role_name`) VALUES
+('admin', '$2y$10$d06denpaf61lTJgsZI5WgehMeEdK2DEmkw1BRzX/vfUB92VIol0iO', 'admin'),
+('user', '$2y$10$ylGnyNhkCFT8iLD6tFWTXuEOsy91QJzi49ujEv5Oa2sO98GdRjK0.', 'customer'),
+('user123', '$2y$10$4AP2m34XbSXJjknnGTvFj.VG1rqGBSEkcxnbUA7ddd95qLlVf7IW.', 'customer');
 
 --
 -- Indexes for dumped tables
@@ -85,12 +102,17 @@ CREATE TABLE `zoo_bookings` (
 --
 ALTER TABLE `hotel_bookings`
   ADD PRIMARY KEY (`hotel_booking_id`);
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`role_name`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
+  ADD KEY `role` (`role_name`);
 
 --
 -- Indexes for table `visits`
@@ -128,7 +150,6 @@ ALTER TABLE `visits`
 --
 ALTER TABLE `zoo_bookings`
   MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
@@ -145,6 +166,10 @@ ALTER TABLE `visits`
 --
 ALTER TABLE `zoo_bookings`
   ADD CONSTRAINT `zoo_booking_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `role` FOREIGN KEY (`role_name`) REFERENCES `roles` (`role_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
