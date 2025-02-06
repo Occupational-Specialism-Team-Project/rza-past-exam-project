@@ -11,15 +11,14 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
 
     // Get sum of all 
     $first_day_of_month = date("Y-m-d 00:00:00", $month_and_year);
-    echo $first_day_of_month;
-    echo "<br>";
 
     $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     $last_day_of_month = date("Y-m-d 23:59:59", $month_and_year);
     // Substract 1 day from the days of the month because it will start on day 1, not day 0
     $last_day_of_month = date_modify(date_create($first_day_of_month), "+" . ($days_in_month) - 1 . " day")->format("Y-m-d H:i:s");
-    echo $last_day_of_month;
-    echo "<br>";
+
+    // "SELECT start_datetime, end_datetime, SUM(number_of_people) AS total_visitors
+    #UNIX_TIMESTAMP()
 
     // "BETWEEN :first_day_of_month and :last_day_of_month" just means in that month
     #$get_booked_days = $pdo->prepare("SELECT start_datetime, end_datetime, SUM(number_of_people) AS total_visitors
