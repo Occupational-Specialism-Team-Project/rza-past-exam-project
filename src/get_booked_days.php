@@ -49,4 +49,3 @@ $month_and_year_value = strtotime($month_and_year);
 echo "<pre>";
 print_r(get_booked_days($month_and_year_value, 4, $pdo));
 echo "</pre>";
-echo "</pre>";
