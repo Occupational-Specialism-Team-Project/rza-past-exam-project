@@ -10,15 +10,15 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
     $year = date("Y", $month_and_year);
 
     // Get sum of all 
-    $begin = date("Y-m-d 00:00:00", $month_and_year);
-    echo $begin;
+    $first_day_of_month = date("Y-m-d 00:00:00", $month_and_year);
+    echo $first_day_of_month;
     echo "<br>";
 
     $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-    $end = date("Y-m-d 23:59:59", $month_and_year);
+    $last_day_of_month = date("Y-m-d 23:59:59", $month_and_year);
     // Substract 1 day from the days of the month because it will start on day 1, not day 0
-    $end = date_modify(date_create($end), "+" . ($days_in_month) - 1 . " day")->format("Y-m-d H:i:s");
-    echo $end;
+    $last_day_of_month = date_modify(date_create($first_day_of_month), "+" . ($days_in_month) - 1 . " day")->format("Y-m-d H:i:s");
+    echo $last_day_of_month;
     echo "<br>";
 
     // "BETWEEN :first_day_of_month and :last_day_of_month" just means in that month
