@@ -25,11 +25,11 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
         JOIN zoo_bookings
         ON zoo_bookings.zoo_booking_id = zoo_bookings_daily.zoo_booking_id
         WHERE (
-            (end_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
+            (zoo_bookings.end_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
             OR
-            (start_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
-        )"
-
+            (zoo_bookings.start_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
+        )
+        GROUP BY zoo_bookings_daily.day"
     );
     $get_bookings_intersecting_month->execute([
         "first_day_of_month" => $first_day_of_month,
