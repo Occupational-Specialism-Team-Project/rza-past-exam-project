@@ -102,9 +102,6 @@ include_once "include/base.php";
                     <div class="row mb-4">
                         <button type="submit" class="btn btn-success float-end" id="book_ticket" name="book_ticket">Reserve a ticket</>
                     </div>
-                    <div class="row">
-                        <?=var_dump($zoo_visit)?>
-                    </div>
                 </form>
             </div>
         </section>
