@@ -33,13 +33,6 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
             (start_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
         )"
 
-        #"SELECT zoo_booking_id, start_datetime, end_datetime
-        #FROM zoo_bookings
-        #WHERE (
-        #    (end_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
-        #    OR
-        #    (start_datetime BETWEEN :first_day_of_month AND :last_day_of_month)
-        #)"
     );
     $get_bookings_intersecting_month->execute([
         "first_day_of_month" => $first_day_of_month,
@@ -47,16 +40,6 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
     ]);
     $bookings_intersecting_month = $get_bookings_intersecting_month->fetchAll();
 
-    // Should return some JSON like this
-    // {
-    //    [
-    //    "total_visitors" = 5,
-    //    ],
-    //    "total_visitors" = 2
-    //    [,
-    //    "total_visitors" = 25
-    //    ]
-    // }
     return $bookings_intersecting_month;
 }
 
@@ -69,6 +52,4 @@ $month_and_year_value = strtotime($month_and_year);
 echo "<pre>";
 print_r(get_booked_days($month_and_year_value, 4, $pdo));
 echo "</pre>";
-
-#echo "<br>";
-#echo cal_days_in_month(CAL_GREGORIAN, $month, $year);
+echo "</pre>";
