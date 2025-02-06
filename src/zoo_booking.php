@@ -123,7 +123,6 @@ include_once "include/base.php";
                     <div class="row mb-4">
                         <button type="button" class="btn btn-success float-end"
                             onclick="get_booked_days(document.getElementById('month').value, function(data) {
-                                // document.getElementById('calendar').innerHTML = data;
                                 console.log(data);
                             });">
                             Reserve a ticket
