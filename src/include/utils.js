@@ -16,7 +16,7 @@ function get_booked_days(month, callback) {
             },
             dataType: "json",
             success: callback,
-            error: function(xhr) {
+            error: function() {
                 console.log("error");
             },
         });
