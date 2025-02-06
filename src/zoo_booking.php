@@ -3,19 +3,41 @@
 require_once "include/utils.php";
 
 function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $pdo) {
+    $day_range = new DatePeriod(
+        new DateTime($start_datetime),
+        new DateInterval('P1D'),
+        (new DateTime($end_datetime))->modify('+1 day')
+    );
+    
+    $days = [];
+    foreach ($day_range as $day) {
+        $days[] = $day->format('Y-m-d');
+    }
+
+    $day_entries = [];
+    foreach ($days as $day) {
+        $day_entries[] = "(LAST_INSERT_ID(), '$day')";
+    }
+
     $educational_visit  = $educational_visit ? 1 : 0;
-    $params = [
+
+    $book_zoo_visit = $pdo->prepare(
+        "INSERT INTO zoo_bookings
+            (username, start_datetime, end_datetime, number_of_people, educational_visit)
+         VALUES
+            (:username, :chosen_start_datetime, :chosen_end_datetime, :chosen_number_of_people, :chosen_educational_visit);
+         INSERT INTO zoo_bookings_daily
+            (zoo_booking_id, day)
+         VALUES " . 
+         implode(",", $day_entries)
+    );
+    $booked_visit = $book_zoo_visit->execute([
         "username" => $username,
         "chosen_start_datetime" => $start_datetime,
         "chosen_end_datetime" => $end_datetime,
         "chosen_number_of_people" => $number_of_people,
         "chosen_educational_visit" => $educational_visit
-    ];
-    $book_zoo_visit = $pdo->prepare(
-        "INSERT INTO zoo_bookings (username, start_datetime, end_datetime, number_of_people, educational_visit)
-         VALUES (:username, :chosen_start_datetime, :chosen_end_datetime, :chosen_number_of_people, :chosen_educational_visit)"
-    );
-    $booked_visit = $book_zoo_visit->execute($params);
+    ]);
 
     return $booked_visit;
 }
