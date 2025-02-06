@@ -20,10 +20,7 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
     // "BETWEEN :first_day_of_month and :last_day_of_month" just means in that month
     $get_bookings_intersecting_month = $pdo->prepare(
         "SELECT
-            zoo_bookings_daily.zoo_booking_daily_id, # Needed for booking
-            zoo_bookings_daily.zoo_booking_id, # Needed for INNER JOIN
-            zoo_bookings.zoo_booking_id, # Needed for INNER JOIN
-            zoo_bookings.start_datetime, zoo_bookings.end_datetime # Needed to only SELECT BETWEEN a certain month
+            zoo_bookings_daily.day, SUM(zoo_bookings.number_of_people) as total_visitors
         FROM zoo_bookings_daily
         JOIN zoo_bookings
         ON zoo_bookings.zoo_booking_id = zoo_bookings_daily.zoo_booking_id
