@@ -18,22 +18,27 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
     $last_day_of_month = date_modify(date_create($first_day_of_month), "+" . ($days_in_month) - 1 . " day")->format("Y-m-d H:i:s");
 
     // "BETWEEN :first_day_of_month and :last_day_of_month" just means in that month
-    $get_bookings_intersecting_month = $pdo->prepare(
+    $get_days_booked_up = $pdo->prepare(
         "SELECT
-            zoo_bookings_daily.day, SUM(zoo_bookings.number_of_people) as total_visitors
+            DAY(zoo_bookings_daily.day) AS day, SUM(zoo_bookings.number_of_people) AS total_visitors
         FROM zoo_bookings_daily
         JOIN zoo_bookings
         ON zoo_bookings.zoo_booking_id = zoo_bookings_daily.zoo_booking_id
         WHERE (zoo_bookings_daily.day BETWEEN :first_day_of_month AND :last_day_of_month)
         GROUP BY zoo_bookings_daily.day"
     );
-    $get_bookings_intersecting_month->execute([
+    $get_days_booked_up->execute([
         "first_day_of_month" => $first_day_of_month,
         "last_day_of_month" => $last_day_of_month
     ]);
-    $bookings_intersecting_month = $get_bookings_intersecting_month->fetchAll();
+    $days_booked_up = $get_days_booked_up->fetchAll(PDO::FETCH_KEY_PAIR);
 
-    return json_encode($bookings_intersecting_month);
+    $days_booked_up_json = [];
+    for ($day_index = 1; $day_index <= $days_in_month; $day_index++) {
+        $days_booked_up_json[$day_index] = isset($day_index, $days_booked_up[$day_index]) ? TRUE : FALSE;
+    }
+
+    return json_encode($days_booked_up_json);
 }
 
 $month_and_year = $_REQUEST["month"] ?? FALSE;
