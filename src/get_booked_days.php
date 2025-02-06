@@ -37,7 +37,7 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
     ]);
     $bookings_intersecting_month = $get_bookings_intersecting_month->fetchAll();
 
-    return $bookings_intersecting_month;
+    return json_encode($bookings_intersecting_month);
 }
 
 $month_and_year = $_REQUEST["month"] ?? FALSE;
