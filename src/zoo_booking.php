@@ -114,23 +114,17 @@ include_once "include/base.php";
                     <div class="row mb-4">
                         <div class="mb-3 col-md-8">
                             <label for="month" class="form-label">Number of people:</label>
-                            <input type="month" class="form-control" id="month" name="month" required>
+                            <input type="month" class="form-control" id="month" name="month" required
+                            onchange="get_booked_days(this.value, function(data) {
+                                console.log(data);
+                                createDays(data);
+                            });">
                         </div>
                     </div>
 
                     <div id="daysOfTheMonth" class="row mb-4 d-flex flex-row justify-content-start mx-auto gap-1">
                         <!-- This is where days of the month will be placed -->
 
-                    </div>
-
-                    <div class="row mb-4">
-                        <button type="button" class="btn btn-success float-end"
-                            onclick="get_booked_days(document.getElementById('month').value, function(data) {
-                                console.log(data);
-                                createDays(data);
-                            });">
-                            Reserve a ticket
-                        </button>
                     </div>
                 </form>
             </div>
