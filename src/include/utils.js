@@ -16,3 +16,15 @@ function get_booked_days(month, callback) {
         });
     }
 }
+
+function createDays(data) {
+    console.log();
+    for (let n = 1; n <= (Object.keys(data).length); n++) {
+        let day = data[n];
+        console.log(day);
+
+        var newDay = document.createElement("div");
+        newDay.id = "day" + n;
+        $("#daysOfTheMonth").append(newDay);
+    }
+}

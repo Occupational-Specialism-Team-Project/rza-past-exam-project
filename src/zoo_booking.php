@@ -124,6 +124,7 @@ include_once "include/base.php";
                         <button type="button" class="btn btn-success float-end"
                             onclick="get_booked_days(document.getElementById('month').value, function(data) {
                                 console.log(data);
+                                createDays(data);
                             });">
                             Reserve a ticket
                         </button>
