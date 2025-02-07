@@ -2,10 +2,10 @@
 
 require_once "include/connect.php";
 
-const MAX_VISITORS = 100;
+const MAX_ZOO_VISITORS = 7;
 
 // Get the days that are fully booked up for a certain number of people in a specific month
-function get_booked_days($month_and_year, $number_of_people, $pdo) {
+function get_booked_days($month_and_year, $number_of_people, $max_visitors, $pdo) {
     $month = date("m", $month_and_year);
     $year = date("Y", $month_and_year);
 
@@ -25,11 +25,13 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
         JOIN zoo_bookings
         ON zoo_bookings.zoo_booking_id = zoo_bookings_daily.zoo_booking_id
         WHERE (zoo_bookings_daily.day BETWEEN :first_day_of_month AND :last_day_of_month)
-        GROUP BY zoo_bookings_daily.day"
+        GROUP BY zoo_bookings_daily.day
+        HAVING SUM(zoo_bookings.number_of_people) >= :max_visitors"
     );
     $get_days_booked_up->execute([
         "first_day_of_month" => $first_day_of_month,
-        "last_day_of_month" => $last_day_of_month
+        "last_day_of_month" => $last_day_of_month,
+        "max_visitors" => $max_visitors
     ]);
     $days_booked_up = $get_days_booked_up->fetchAll(PDO::FETCH_KEY_PAIR); // Needed to make the day number the index
 
@@ -48,4 +50,4 @@ if (! $month_and_year) {
 }
 
 $month_and_year_value = strtotime($month_and_year);
-echo get_booked_days($month_and_year_value, 4, $pdo);
+echo get_booked_days($month_and_year_value, 4, MAX_ZOO_VISITORS, $pdo);
