@@ -31,8 +31,9 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
         "first_day_of_month" => $first_day_of_month,
         "last_day_of_month" => $last_day_of_month
     ]);
-    $days_booked_up = $get_days_booked_up->fetchAll(PDO::FETCH_KEY_PAIR);
+    $days_booked_up = $get_days_booked_up->fetchAll(PDO::FETCH_KEY_PAIR); // Needed to make the day number the index
 
+    // Prepare data in an acceptable format for parsing on the client
     $days_booked_up_json = [];
     for ($day_index = 1; $day_index <= $days_in_month; $day_index++) {
         $days_booked_up_json[$day_index] = isset($day_index, $days_booked_up[$day_index]) ? TRUE : FALSE;
