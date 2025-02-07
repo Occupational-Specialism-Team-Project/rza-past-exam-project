@@ -113,7 +113,7 @@ include_once "include/base.php";
                 <form class="card-body container">
                     <div class="row mb-4">
                         <div class="mb-3 col-md-8">
-                            <label for="month" class="form-label">Number of people:</label>
+                            <label for="month" class="form-label">Select a month:</label>
                             <input type="month" class="form-control" id="month" name="month" required
                             onchange="get_booked_days(this.value, function(data) {
                                 console.log(data);
