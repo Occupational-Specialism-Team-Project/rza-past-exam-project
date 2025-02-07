@@ -117,9 +117,12 @@ include_once "include/base.php";
                             <input type="month" class="form-control" id="month" name="month" required>
                         </div>
                     </div>
-                    <div id="calendar">
+
+                    <div id="daysOfTheMonth" class="row mb-4 d-flex flex-row justify-content-start mx-auto gap-1">
+                        <!-- This is where days of the month will be placed -->
 
                     </div>
+
                     <div class="row mb-4">
                         <button type="button" class="btn btn-success float-end"
                             onclick="get_booked_days(document.getElementById('month').value, function(data) {
