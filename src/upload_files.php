@@ -32,14 +32,27 @@ if($_SESSION['role']=="admin"){
     }
 }
 $select_files ="SELECT * FROM materials";
-$stmt = $pdo->prepare($select_files);
-$stmt->execute();
-$stmt->fetchAll();
-var_dump($stmt);
+function selectAll($selectAllQuery){
+    try{
+      global $pdo; // Use the global $conn from config.php
+  
+      $stmt = $pdo->prepare($selectAllQuery);
+      $stmt->execute();
+      return $stmt->fetchAll(); //return all the rows fetched
+  
+    }catch(PDOException $e){
+  
+      echo "Select error" .  $e->getMessage();
+     
+    }
+}  
+$result=selectAll($select_files);
+
+
 
 ?>
 <?php
-const PAGE_TITLE = "materialsdow Page";
+const PAGE_TITLE = "materials download Page";
 include_once "include/base.php";
 ?>
 <!DOCTYPE html>
@@ -57,21 +70,24 @@ include_once "include/base.php";
     </form>
     <?php endif; ?>
     <div>
-
-        <table>
+    <table>
+        <tr>
+            <th>File download</th>
+        </tr>
+        <?php foreach ($result as $file): ?>
+            <?php 
+                $file_path = 'uploads/' . $file['files'];
+            ?>
             <tr>
-                <th>ID</th>
-                <th>File download</th>
-            </tr><?php
-         foreach ($stmt as $file):?>
-         <?php
-         $file_path = 'uploads/'. $file['files'];?>
-            <tr>
-                <td><?php echo $file['files'] ?></td>
-                <td><?php echo'<a href="'.$file_path.'" download="' .$file['files'] . '">' .$file['files'].'</a> <br>';?></td>
-
+                <td>
+                    <a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>">
+                        <?php echo $file['files']; ?>
+                    </a>
+                </td>
             </tr>
-        </table>
-            <?php endforeach;?>
+        <?php endforeach; ?>
+    </table>
+</div>
+
 </body>
 </html>
