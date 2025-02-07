@@ -10,8 +10,8 @@ function get_booked_days(month, callback) {
             },
             dataType: "json",
             success: callback,
-            error: function() {
-                console.log("error");
+            error: function(xhr, status, error) {
+                alert(xhr.responseText);
             },
         });
     }
