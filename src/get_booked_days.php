@@ -15,7 +15,7 @@ function get_booked_days($month_and_year, $number_of_people, $pdo) {
     $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     $last_day_of_month = date("Y-m-d 23:59:59", $month_and_year);
     // Substract 1 day from the days of the month because it will start on day 1, not day 0
-    $last_day_of_month = date_modify(date_create($first_day_of_month), "+" . ($days_in_month) - 1 . " day")->format("Y-m-d H:i:s");
+    $last_day_of_month = date_modify(date_create($first_day_of_month), "+" . $days_in_month - 1 . " day")->format("Y-m-d H:i:s");
 
     // "BETWEEN :first_day_of_month and :last_day_of_month" just means in that month
     $get_days_booked_up = $pdo->prepare(
