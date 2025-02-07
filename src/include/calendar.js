@@ -18,7 +18,6 @@ function get_booked_days(month, callback) {
 }
 
 function createDays(data) {
-    console.log();
     $("#daysOfTheMonth").empty();
     for (let n = 1; n <= (Object.keys(data).length); n++) {
         var newDay = document.createElement("div");
