@@ -41,3 +41,17 @@ function createDays(data) {
         $("#daysOfTheMonth").append(newDay);
     }
 }
+
+function initialCalendarDisplay() {
+    let currentDate = new Date();
+    let currentMonth = (currentDate.getMonth() < 10 ? '0' : '') + (currentDate.getMonth() + 1);
+    let monthValue = `${currentDate.getFullYear()}-${currentMonth}`;
+
+    let month = $("month");
+    month.value = monthValue;
+    get_booked_days(month.value, function(data) {
+        createDays(data);
+    });
+}
+
+initialCalendarDisplay();
