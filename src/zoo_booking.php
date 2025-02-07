@@ -116,7 +116,6 @@ include_once "include/base.php";
                             <label for="month" class="form-label">Select a month:</label>
                             <input type="month" class="form-control" id="month" name="month" required
                             onchange="get_booked_days(this.value, function(data) {
-                                console.log(data);
                                 createDays(data);
                             });">
                         </div>
