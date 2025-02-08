@@ -2,14 +2,70 @@
 
 require_once "include/utils.php";
 
+function validate_booking($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo) {
+    $fetch = new Fetch();
+    $current_datetime = date("Y-m-d H:i:s");
+
+    # We need to validate our inputs
+    if (! isset($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors)) { // Presence Check
+        $fetch->error = "You cannot have empty fields.";
+
+        return $fetch;
+    } elseif (! (strtotime($start_datetime) or strtotime($end_datetime))) { // Format Check
+        $fetch->error = "Your start date or end date are in the wrong format.";
+
+        return $fetch;
+    } elseif ($number_of_people > $max_visitors) { // Range Check
+        $fetch->error = "You cannot have a number of people ($number_of_people) greater than the max amount of visitors ($max_visitors).";
+
+        return $fetch;
+    } elseif ($start_datetime > $end_datetime) { // Consistency Check
+        $fetch->error = "Start time ($start_datetime) cannot be later than end time ($end_datetime).";
+
+        return $fetch;
+    } elseif ($start_datetime < $current_datetime) { // Consistency Check
+        $fetch->error = "Start time ($start_datetime) cannot be in the past ($current_datetime).";
+
+        return $fetch;
+    }
+
+    $conflicting_bookings = get_conflicting_bookings($number_of_people, $start_datetime, $end_datetime, $max_visitors, $pdo);
+    if ($conflicting_bookings->result) { // Look Up Check
+        $fetch->error = "You have conflicting bookings. Check the calendar for more information.";
+        $fetch->result = $conflicting_bookings->result;
+
+        return $fetch;
+    } elseif (isset($conflicting_bookings->error)) {
+        $fetch->error = $conflicting_bookings->error;
+        $fetch->result = $conflicting_bookings->result;
+
+        return $fetch;
+    }
+
+    $user = get_user_from_username($username, $pdo);
+    if (! $user) { // Look Up Check
+        $fetch->error = "You are not logged in as a valid user. User with the username $username does not exist.";
+        $fetch->result = $user;
+        return $fetch;
+    }
+}
+
+function get_user_from_username($username, $pdo) {
+    $fetch = new Fetch();
+
+    $get_user_from_username = $pdo->prepare(
+        "SELECT username FROM users WHERE username = :input_username"
+    );
+    $get_user_from_username->execute(["input_username" => $username]);
+    $user = $get_user_from_username->fetchAll();
+
+    $fetch->result = $user;
+    return $fetch;
+}
+
 function get_conflicting_bookings($number_of_people, $start_datetime, $end_datetime, $max_visitors, $pdo) {
     $fetch = new Fetch();
-    if ($number_of_people > $max_visitors) {
-        $fetch->error = "You cannot have a number of people ($number_of_people) greater than the max amount of visitors ($max_visitors).";
-        return $fetch;
-    } elseif ($start_datetime > $end_datetime) {
 
-    }
     $get_conflicting_bookings = $pdo->prepare(
         "SELECT zoo_booking_id FROM zoo_bookings
         WHERE (
@@ -30,10 +86,23 @@ function get_conflicting_bookings($number_of_people, $start_datetime, $end_datet
         "max_visitors" => $max_visitors
     ]);
 
-    return $get_conflicting_bookings->fetchAll();
+    $conflicting_bookings = $get_conflicting_bookings->fetchAll();
+    $fetch->result = $conflicting_bookings;
+
+    return $fetch;
 }
 
 function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo) {
+    $fetch = new Fetch();
+
+    $valid_booking = validate_booking($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo);
+    if (isset($valid_booking->error)) {
+        $fetch->error = $valid_booking->error;
+        $fetch->result = $valid_booking->result;
+
+        return $fetch;
+    }
+
     $day_range = new DatePeriod(
         new DateTime($start_datetime),
         new DateInterval('P1D'),
@@ -69,8 +138,9 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
         "chosen_number_of_people" => $number_of_people,
         "chosen_educational_visit" => $educational_visit
     ]);
+    $fetch->result = $booked_visit;
 
-    return $booked_visit;
+    return $fetch;
 }
 
 $user = $_SESSION["user"];
@@ -135,9 +205,17 @@ include_once "include/base.php";
                         <button type="submit" class="btn btn-success float-end" id="book_ticket" name="book_ticket">Reserve a ticket</button>
                     </div>
                     <div class="row mb-4">
-                        <pre>
-                            <?=print_r($zoo_visit)?>
-                        </pre>
+                        <?php if (isset($zoo_visit)): ?>
+                            <?php if ($zoo_visit->error): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?=$zoo_visit->error?>
+                                </div>
+                            <?php elseif (isset($zoo_visit->result)): ?>
+                                <div class="alert alert-success" role="alert">
+                                    Successfully booked zoo tickets.
+                                </div>
+                            <?php endif ?>
+                        <?php endif ?>
                     </div>
                 </form>
             </div>
