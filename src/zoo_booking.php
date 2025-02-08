@@ -145,9 +145,11 @@ include_once "include/base.php";
         <section class="mx-auto col-md-5 mt-5">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="text-center mb-4">Here are days that are fully booked up:</h1>
+                    <h1 class="text-center">Available Days</h1>
                 </div>
                 <form class="card-body container">
+                    <h2 class="text-center mb-4">Here are days that are fully booked up:</h2>
+
                     <div class="row mb-4">
                         <div class="mb-3 col-md-6">
                             <label for="month" class="form-label">Select a month:</label>
