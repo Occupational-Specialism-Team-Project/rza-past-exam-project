@@ -43,51 +43,64 @@ function validate_booking($username, $start_datetime, $end_datetime, $number_of_
     }
 
     $user = get_user_from_username($username, $pdo);
-    if (! $user) { // Look Up Check
+    if (isset($user->error)) {
+        $fetch->error = $user->error;
+        $fetch->result = $user->result;
+    } elseif (! $user->result) { // Look Up Check
         $fetch->error = "You are not logged in as a valid user. User with the username $username does not exist.";
-        $fetch->result = $user;
+        $fetch->result = $user->result;
         return $fetch;
     }
+
+    return $fetch;
 }
 
 function get_user_from_username($username, $pdo) {
     $fetch = new Fetch();
 
-    $get_user_from_username = $pdo->prepare(
-        "SELECT username FROM users WHERE username = :input_username"
-    );
-    $get_user_from_username->execute(["input_username" => $username]);
-    $user = $get_user_from_username->fetchAll();
+    try {
+        $get_user_from_username = $pdo->prepare(
+            "SELECT username FROM users WHERE username = :input_username"
+        );
+        $get_user_from_username->execute(["input_username" => $username]);
+        $user = $get_user_from_username->fetchAll();
+        $fetch->result = $user;
+    } catch (Exception $e) {
+        $fetch->error = $e;
+    }
 
-    $fetch->result = $user;
     return $fetch;
 }
 
 function get_conflicting_bookings($number_of_people, $start_datetime, $end_datetime, $max_visitors, $pdo) {
     $fetch = new Fetch();
 
-    $get_conflicting_bookings = $pdo->prepare(
-        "SELECT zoo_booking_id FROM zoo_bookings
-        WHERE (
-            start_datetime BETWEEN :chosen_start_datetime AND :chosen_end_datetime
-        ) OR (
-            end_datetime BETWEEN :chosen_start_datetime AND :chosen_end_datetime
-        ) OR (
-            :chosen_start_datetime BETWEEN start_datetime AND end_datetime
-        ) OR (
-            :chosen_end_datetime BETWEEN start_datetime AND end_datetime
-        )
-        HAVING SUM(number_of_people) >= (:max_visitors - :chosen_number_of_people)"
-    );
-    $get_conflicting_bookings->execute([
-        "chosen_start_datetime" => $start_datetime,
-        "chosen_end_datetime" => $end_datetime,
-        "chosen_number_of_people" => $number_of_people,
-        "max_visitors" => $max_visitors
-    ]);
+    try {
+        $get_conflicting_bookings = $pdo->prepare(
+            "SELECT zoo_booking_id FROM zoo_bookings
+            WHERE (
+                start_datetime BETWEEN :chosen_start_datetime AND :chosen_end_datetime
+            ) OR (
+                end_datetime BETWEEN :chosen_start_datetime AND :chosen_end_datetime
+            ) OR (
+                :chosen_start_datetime BETWEEN start_datetime AND end_datetime
+            ) OR (
+                :chosen_end_datetime BETWEEN start_datetime AND end_datetime
+            )
+            HAVING SUM(number_of_people) >= (:max_visitors - :chosen_number_of_people)"
+        );
+        $get_conflicting_bookings->execute([
+            "chosen_start_datetime" => $start_datetime,
+            "chosen_end_datetime" => $end_datetime,
+            "chosen_number_of_people" => $number_of_people,
+            "max_visitors" => $max_visitors
+        ]);
 
-    $conflicting_bookings = $get_conflicting_bookings->fetchAll();
-    $fetch->result = $conflicting_bookings;
+        $conflicting_bookings = $get_conflicting_bookings->fetchAll();
+        $fetch->result = $conflicting_bookings;
+    } catch (Exception $e) {
+        $fetch->error = $e;
+    }
 
     return $fetch;
 }
@@ -103,42 +116,46 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
         return $fetch;
     }
 
-    $day_range = new DatePeriod(
-        new DateTime($start_datetime),
-        new DateInterval('P1D'),
-        (new DateTime($end_datetime))->modify('+1 day')
-    );
-    
-    $days = [];
-    foreach ($day_range as $day) {
-        $days[] = $day->format('Y-m-d');
+    try {
+        $day_range = new DatePeriod(
+            new DateTime($start_datetime),
+            new DateInterval('P1D'),
+            (new DateTime($end_datetime))->modify('+1 day')
+        );
+        
+        $days = [];
+        foreach ($day_range as $day) {
+            $days[] = $day->format('Y-m-d');
+        }
+
+        $day_entries = [];
+        foreach ($days as $day) {
+            $day_entries[] = "(LAST_INSERT_ID(), '$day')";
+        }
+
+        $educational_visit  = $educational_visit ? 1 : 0;
+
+        $book_zoo_visit = $pdo->prepare(
+            "INSERT INTO zoo_bookings
+                (username, start_datetime, end_datetime, number_of_people, educational_visit)
+            VALUES
+                (:username, :chosen_start_datetime, :chosen_end_datetime, :chosen_number_of_people, :chosen_educational_visit);
+            INSERT INTO zoo_bookings_daily
+                (zoo_booking_id, day)
+            VALUES " . 
+            implode(",", $day_entries)
+        );
+        $booked_visit = $book_zoo_visit->execute([
+            "username" => $username,
+            "chosen_start_datetime" => $start_datetime,
+            "chosen_end_datetime" => $end_datetime,
+            "chosen_number_of_people" => $number_of_people,
+            "chosen_educational_visit" => $educational_visit
+        ]);
+        $fetch->result = $booked_visit;
+    } catch (Exception $e) {
+        $fetch->error = $e;
     }
-
-    $day_entries = [];
-    foreach ($days as $day) {
-        $day_entries[] = "(LAST_INSERT_ID(), '$day')";
-    }
-
-    $educational_visit  = $educational_visit ? 1 : 0;
-
-    $book_zoo_visit = $pdo->prepare(
-        "INSERT INTO zoo_bookings
-            (username, start_datetime, end_datetime, number_of_people, educational_visit)
-         VALUES
-            (:username, :chosen_start_datetime, :chosen_end_datetime, :chosen_number_of_people, :chosen_educational_visit);
-         INSERT INTO zoo_bookings_daily
-            (zoo_booking_id, day)
-         VALUES " . 
-         implode(",", $day_entries)
-    );
-    $booked_visit = $book_zoo_visit->execute([
-        "username" => $username,
-        "chosen_start_datetime" => $start_datetime,
-        "chosen_end_datetime" => $end_datetime,
-        "chosen_number_of_people" => $number_of_people,
-        "chosen_educational_visit" => $educational_visit
-    ]);
-    $fetch->result = $booked_visit;
 
     return $fetch;
 }
@@ -208,7 +225,7 @@ include_once "include/base.php";
                         <?php if (isset($zoo_visit)): ?>
                             <?php if ($zoo_visit->error): ?>
                                 <div class="alert alert-danger" role="alert">
-                                    <?=$zoo_visit->error?>
+                                    Error - <?=$zoo_visit->error?>
                                 </div>
                             <?php elseif (isset($zoo_visit->result)): ?>
                                 <div class="alert alert-success" role="alert">
