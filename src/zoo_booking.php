@@ -2,12 +2,13 @@
 
 require_once "include/utils.php";
 
-function validate_booking($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo) {
+function validate_booking($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $max_ticket_duration, $pdo) {
     $fetch = new Fetch();
     $current_datetime = date("Y-m-d H:i:s");
+    $booking_duration = strtotime($end_datetime) - strtotime($start_datetime);
 
     # We need to validate our inputs
-    if (! isset($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors)) { // Presence Check
+    if (! isset($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $max_ticket_duration)) { // Presence Check
         $fetch->error = "You cannot have empty fields.";
 
         return $fetch;
@@ -15,7 +16,7 @@ function validate_booking($username, $start_datetime, $end_datetime, $number_of_
         $fetch->error = "Your start date or end date are in the wrong format.";
 
         return $fetch;
-    } elseif ($number_of_people > $max_visitors) { // Range Check
+    } elseif ($number_of_people > $max_visitors) { // Length Check
         $fetch->error = "You cannot have a number of people ($number_of_people) greater than the max amount of visitors ($max_visitors).";
 
         return $fetch;
@@ -25,6 +26,10 @@ function validate_booking($username, $start_datetime, $end_datetime, $number_of_
         return $fetch;
     } elseif ($start_datetime < $current_datetime) { // Consistency Check
         $fetch->error = "Start time ($start_datetime) cannot be in the past ($current_datetime).";
+
+        return $fetch;
+    } elseif ($booking_duration > $max_ticket_duration) { // Length Check
+        $fetch->error = "You cannot have a number of days between start date ($start_datetime) and end date ($end_datetime) that is greater than the max ticket duration ($max_ticket_duration).";
 
         return $fetch;
     }
@@ -105,10 +110,10 @@ function get_conflicting_bookings($number_of_people, $start_datetime, $end_datet
     return $fetch;
 }
 
-function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo) {
+function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $max_ticket_duration, $pdo) {
     $fetch = new Fetch();
 
-    $valid_booking = validate_booking($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo);
+    $valid_booking = validate_booking($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $max_ticket_duration, $pdo);
     if (isset($valid_booking->error)) {
         $fetch->error = $valid_booking->error;
         $fetch->result = $valid_booking->result;
@@ -177,6 +182,7 @@ if (isset($_POST["book_ticket"])) {
         $_POST["start_datetime"], $_POST["end_datetime"],
         $_POST["number_of_people"], $_POST["educational_visit"] ?? FALSE,
         MAX_ZOO_VISITORS,
+        MAX_TICKET_DURATION,
         $pdo
     );
 }
