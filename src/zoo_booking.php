@@ -2,6 +2,37 @@
 
 require_once "include/utils.php";
 
+function get_conflicting_bookings($number_of_people, $start_datetime, $end_datetime, $max_visitors, $pdo) {
+    $fetch = new Fetch();
+    if ($number_of_people > $max_visitors) {
+        $fetch->error = "You cannot have a number of people ($number_of_people) greater than the max amount of visitors ($max_visitors).";
+        return $fetch;
+    } elseif ($start_datetime > $end_datetime) {
+
+    }
+    $get_conflicting_bookings = $pdo->prepare(
+        "SELECT zoo_booking_id FROM zoo_bookings
+        WHERE (
+            start_datetime BETWEEN :chosen_start_datetime AND :chosen_end_datetime
+        ) OR (
+            end_datetime BETWEEN :chosen_start_datetime AND :chosen_end_datetime
+        ) OR (
+            :chosen_start_datetime BETWEEN start_datetime AND end_datetime
+        ) OR (
+            :chosen_end_datetime BETWEEN start_datetime AND end_datetime
+        )
+        HAVING SUM(number_of_people) >= (:max_visitors - :chosen_number_of_people)"
+    );
+    $get_conflicting_bookings->execute([
+        "chosen_start_datetime" => $start_datetime,
+        "chosen_end_datetime" => $end_datetime,
+        "chosen_number_of_people" => $number_of_people,
+        "max_visitors" => $max_visitors
+    ]);
+
+    return $get_conflicting_bookings->fetchAll();
+}
+
 function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo) {
     $day_range = new DatePeriod(
         new DateTime($start_datetime),
