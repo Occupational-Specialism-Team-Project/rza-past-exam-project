@@ -16,3 +16,5 @@ if ((session_status() !== PHP_SESSION_ACTIVE) and (session_status() === PHP_SESS
         redirect("error.php");
     }
 }
+
+require "settings.php";

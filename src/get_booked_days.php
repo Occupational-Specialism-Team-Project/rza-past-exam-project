@@ -1,8 +1,7 @@
 <?php
 
 require_once "include/connect.php";
-
-const MAX_ZOO_VISITORS = 7;
+require "include/settings.php";
 
 // Get the days that are fully booked up for a certain number of people in a specific month
 function get_booked_days($month_and_year, $potential_visitors, $max_visitors, $pdo) {
@@ -54,6 +53,7 @@ function get_booked_days($month_and_year, $potential_visitors, $max_visitors, $p
 $month_and_year = $_REQUEST["month"] ?? FALSE;
 $potential_visitors = $_REQUEST["potential_visitors"] ?? FALSE;
 if (! $month_and_year) {
+    echo "Please pick a month";
     die();
 } elseif (! $potential_visitors) {
     $potential_visitors = 1;
