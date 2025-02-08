@@ -225,7 +225,12 @@ include_once "include/base.php";
                     </div>
 
                     <div class="row mb-4">
-                        <button type="submit" class="btn btn-success float-end" id="book_ticket" name="book_ticket">Reserve a ticket</button>
+                        <div class="col-md-6">
+                            <a href="tickets.php"><button type="button" class="btn btn-primary">See existing tickets</button></a>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-success float-end" id="book_ticket" name="book_ticket">Reserve a ticket</button>
+                        </div>
                     </div>
                     <div class="row mb-4">
                         <?php if (isset($zoo_visit)): ?>
@@ -235,7 +240,7 @@ include_once "include/base.php";
                                 </div>
                             <?php elseif (isset($zoo_visit->result)): ?>
                                 <div class="alert alert-success" role="alert">
-                                    Successfully booked zoo tickets.
+                                    Successfully booked zoo tickets. <a href="tickets.php">Navigate here</a> to see your tickets.
                                 </div>
                             <?php endif ?>
                         <?php endif ?>
