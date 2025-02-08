@@ -1,12 +1,17 @@
-function get_booked_days(month, callback) {
+function get_booked_days(month, potential_visitors, callback) {
     if (month == null) {
+        console.log("Error - month field is NULL");
         return;
     } else {
+        if (potential_visitors == null) {
+            potential_visitors = 1;
+        }
         $.ajax({
             url: "get_booked_days.php",
             type: "GET",
             data: {
                 month: month,
+                potential_visitors: potential_visitors,
             },
             dataType: "json",
             success: callback,
@@ -47,9 +52,12 @@ function initialCalendarDisplay() {
     let currentMonth = (currentDate.getMonth() < 10 ? '0' : '') + (currentDate.getMonth() + 1);
     let monthValue = `${currentDate.getFullYear()}-${currentMonth}`;
 
-    let month = $("month");
+    let month = $("#month");
     month.value = monthValue;
-    get_booked_days(month.value, function(data) {
+    month.min = monthValue;
+    let potential_visitors = $("#potential_visitors");
+    potential_visitors.value = 1;
+    get_booked_days(month.value, potential_visitors.value, function(data) {
         createDays(data);
     });
 }

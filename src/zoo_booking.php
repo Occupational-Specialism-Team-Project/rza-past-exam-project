@@ -112,10 +112,17 @@ include_once "include/base.php";
                 </div>
                 <form class="card-body container">
                     <div class="row mb-4">
-                        <div class="mb-3 col-md-8">
+                        <div class="mb-3 col-md-6">
                             <label for="month" class="form-label">Select a month:</label>
-                            <input type="month" class="form-control" id="month" name="month" required
-                            onchange="get_booked_days(this.value, function(data) {
+                            <input type="month" class="form-control" id="month" name="month" min="1" required
+                            onchange="get_booked_days(this.value, document.getElementById('potential_visitors').value, function(data) {
+                                createDays(data);
+                            });">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="potential_visitors" class="form-label">How many people do you plan to bring with you?</label>
+                            <input type="number" class="form-control" id="potential_visitors" name="potential_visitors" required
+                            onchange="get_booked_days(document.getElementById('month').value, this.value, function(data) {
                                 createDays(data);
                             });">
                         </div>
