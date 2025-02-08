@@ -158,10 +158,29 @@ include_once "include/base.php";
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="potential_visitors" class="form-label">How many people do you plan to bring with you?</label>
-                            <input type="number" class="form-control" id="potential_visitors" name="potential_visitors" required
-                            onchange="get_booked_days(document.getElementById('month').value, this.value, function(data) {
-                                createDays(data);
-                            });">
+                            <label for="potential_visitors" class="form-label">
+                                <i>Visitors: (<b class="fst-normal" id="visitors_live_count"></b>)</i>
+                            </label>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <label class="form-label">0</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="range" class="form-range" id="potential_visitors" name="potential_visitors" min="0" max="<?=MAX_ZOO_VISITORS?>" value="0" required
+                                        onchange="
+                                            let visitors_text = document.getElementById('visitors_live_count');
+                                            visitors_text.innerHTML = this.value;
+                                            get_booked_days(document.getElementById('month').value, this.value, function(data) {
+                                                createDays(data);
+                                            });
+                                        ">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="form-label"><?=MAX_ZOO_VISITORS?></label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

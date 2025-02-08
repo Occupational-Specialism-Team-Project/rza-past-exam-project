@@ -63,3 +63,5 @@ function initialCalendarDisplay() {
 }
 
 initialCalendarDisplay();
+let visitors_text = document.getElementById('visitors_live_count');
+visitors_text.innerHTML = document.getElementById('potential_visitors').value;
