@@ -70,6 +70,7 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
         "chosen_educational_visit" => $educational_visit
     ]);
 
+    return $booked_visit;
 }
 
 $user = $_SESSION["user"];
