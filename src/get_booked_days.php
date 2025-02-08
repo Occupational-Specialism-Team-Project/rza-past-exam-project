@@ -1,7 +1,6 @@
 <?php
 
-require_once "include/connect.php";
-require "include/settings.php";
+require_once "include/utils.php";
 
 // Get the days that are fully booked up for a certain number of people in a specific month
 function get_booked_days($month_and_year, $potential_visitors, $max_visitors, $pdo) {

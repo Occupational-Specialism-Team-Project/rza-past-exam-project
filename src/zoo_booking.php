@@ -2,7 +2,7 @@
 
 require_once "include/utils.php";
 
-function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $pdo) {
+function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_people, $educational_visit, $max_visitors, $pdo) {
     $day_range = new DatePeriod(
         new DateTime($start_datetime),
         new DateInterval('P1D'),
@@ -39,7 +39,6 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
         "chosen_educational_visit" => $educational_visit
     ]);
 
-    return $booked_visit;
 }
 
 $user = $_SESSION["user"];
@@ -58,6 +57,7 @@ if (isset($_POST["book_ticket"])) {
         $user,
         $_POST["start_datetime"], $_POST["end_datetime"],
         $_POST["number_of_people"], $_POST["educational_visit"] ?? FALSE,
+        MAX_ZOO_VISITORS,
         $pdo
     );
 }
