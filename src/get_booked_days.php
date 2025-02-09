@@ -60,3 +60,4 @@ if (! $month_and_year) {
 
 $month_and_year_value = strtotime($month_and_year);
 echo get_booked_days($month_and_year_value, $potential_visitors, MAX_ZOO_VISITORS, $pdo);
+die();
