@@ -17,7 +17,11 @@ function validate_booking($username, $start_datetime, $end_datetime, $number_of_
 
         return $fetch;
     } elseif ($number_of_people > $max_visitors) { // Length Check
-        $fetch->error = "You cannot have a number of people ($number_of_people) greater than the max amount of visitors ($max_visitors).";
+        $fetch->error = "You cannot have a number of people ($number_of_people) greater than the maximum amount of visitors ($max_visitors).";
+
+        return $fetch;
+    } elseif ($number_of_people < 1) { // Length Check
+        $fetch->error = "You cannot have a number of people ($number_of_people) less than the minimum amount of visitors (1).";
 
         return $fetch;
     } elseif ($start_datetime > $end_datetime) { // Consistency Check
