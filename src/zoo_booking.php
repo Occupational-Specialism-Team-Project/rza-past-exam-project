@@ -215,7 +215,7 @@ include_once "include/base.php";
                     <div class="row mb-4">
                         <div class="mb-3 col-md-8">
                             <label for="number_of_people" class="form-label">Number of people:</label>
-                            <input type="number" class="form-control" id="number_of_people" name="number_of_people" required>
+                            <input type="number" class="form-control" id="number_of_people" name="number_of_people" required min="1" max="<?=MAX_ZOO_VISITORS?>" value="1">
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="educational_visit" class="form-label">Educational visit?</label>
