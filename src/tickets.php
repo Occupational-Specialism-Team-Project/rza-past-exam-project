@@ -95,7 +95,7 @@ include_once "include/base.php";
                                     <td><?=$ticket["active"] ? "Yes" : "No"?></td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ticket_<?=$ticket["zoo_booking_id"]?>">View</button>
-                                        <div id="ticket_<?=$ticket["zoo_booking_id"]?>" class="modal" tabindex="-1" aria-labelledby="ticket_<?=$ticket["zoo_booking_id"]?>_label">
+                                        <div id="ticket_<?=$ticket["zoo_booking_id"]?>" class="modal fade" tabindex="-1" aria-labelledby="ticket_<?=$ticket["zoo_booking_id"]?>_label">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -116,7 +116,7 @@ include_once "include/base.php";
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel_<?=$ticket["zoo_booking_id"]?>">Cancel</button>
-                                        <div id="cancel_<?=$ticket["zoo_booking_id"]?>" class="modal" tabindex="-1" aria-labelledby="cancel_<?=$ticket["zoo_booking_id"]?>_label">
+                                        <div id="cancel_<?=$ticket["zoo_booking_id"]?>" class="modal fade" tabindex="-1" aria-labelledby="cancel_<?=$ticket["zoo_booking_id"]?>_label">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -140,17 +140,17 @@ include_once "include/base.php";
                     </table>
                 </div>
                 <?php if (isset($tickets->error)): ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger mb-3" role="alert">
                         Error - unable to obtain zoo tickets.
                     </div>
                 <?php endif ?>
                 <?php if (isset($_GET["success"])): ?>
                     <?php if ($_GET["success"]): ?>
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success mb-3" role="alert">
                             Successfully cancelled zoo tickets.
                         </div>
                     <?php else: ?>
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger mb-3" role="alert">
                             Error - unable to cancel zoo tickets.
                         </div>
                     <?php endif ?>
