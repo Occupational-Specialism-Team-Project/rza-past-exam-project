@@ -71,6 +71,18 @@ include_once "include/base.php";
             <div class="col-md-3 mb-5">
                 <div class="card" style="height: 400px">
                     <div class="card-header">
+                        <h5 class="card-title">Zoo Bookings & Reservations</h5>
+                    </div>
+                    <i class="card-img-top fa-solid fa-hippo text-center p-3" style="font-size: 10rem"></i>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <p class="card-text">Book and reserve zoo tickets.</p>
+                        <a href="zoo_booking.php" class="btn btn-primary">Navigate Here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-5">
+                <div class="card" style="height: 400px">
+                    <div class="card-header">
                         <h5 class="card-title">Log Out</h5>
                     </div>
                     <i class="card-img-top fa-solid fa-arrow-right-to-bracket text-center p-3" style="font-size: 10rem"></i>
@@ -106,18 +118,6 @@ include_once "include/base.php";
                     </div>
                 </div>
                 <?php if ($_SESSION["role"] == "customer"): ?>
-                    <div class="col-md-3 mb-5">
-                        <div class="card" style="height: 400px">
-                            <div class="card-header">
-                                <h5 class="card-title">Zoo Bookings & Reservations</h5>
-                            </div>
-                            <i class="card-img-top fa-solid fa-hippo text-center p-3" style="font-size: 10rem"></i>
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <p class="card-text">Book and reserve zoo tickets.</p>
-                                <a href="zoo_booking.php" class="btn btn-primary">Navigate Here</a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-3 mb-5">
                         <div class="card" style="height: 400px">
                             <div class="card-header">
