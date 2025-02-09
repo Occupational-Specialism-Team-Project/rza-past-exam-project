@@ -205,17 +205,35 @@ include_once "include/base.php";
                     <div class="row mb-4">
                         <div class="mb-3 col-md-6">
                             <label for="start_datetime" class="form-label">Start date and time:</label>
-                            <input type="datetime-local" class="form-control" id="start_datetime" name="start_datetime" required>
+                            <input type="datetime-local" class="form-control" id="start_datetime" name="start_datetime" required oninput="validateZooBooking()">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback" id="start_datetime_feedback">
+
+                            </div>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="end_datetime" class="form-label">End date and time:</label>
-                            <input type="datetime-local" class="form-control" id="end_datetime" name="end_datetime" required>
+                            <input type="datetime-local" class="form-control" id="end_datetime" name="end_datetime" required oninput="validateZooBooking()">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback" id="end_datetime_feedback">
+
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="mb-3 col-md-8">
                             <label for="number_of_people" class="form-label">Number of people:</label>
-                            <input type="number" class="form-control" id="number_of_people" name="number_of_people" required min="1" max="<?=MAX_ZOO_VISITORS?>" value="1">
+                            <input type="number" class="form-control" id="number_of_people" name="number_of_people" required oninput="validateZooBooking()" min="1" max="<?=MAX_ZOO_VISITORS?>" value="1">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback" id="number_of_people_feedback">
+
+                            </div>
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="educational_visit" class="form-label">Educational visit?</label>
@@ -226,10 +244,10 @@ include_once "include/base.php";
 
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <a href="tickets.php"><button type="button" class="btn btn-primary">See existing tickets</button></a>
+                            <a href="tickets.php"><button type="button" class="btn btn-primary mx-auto">See existing tickets</button></a>
                         </div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-success float-end" id="book_ticket" name="book_ticket">Reserve a ticket</button>
+                            <button type="submit" class="btn btn-success mx-auto float-end" id="book_ticket" name="book_ticket">Reserve a ticket</button>
                         </div>
                     </div>
                     <div class="row mb-4">
