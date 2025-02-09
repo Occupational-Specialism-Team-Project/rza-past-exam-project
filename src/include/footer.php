@@ -58,7 +58,7 @@
         <?php if (basename($_SERVER["PHP_SELF"]) == "zoo_booking.php"): ?>
             <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
             <script src="include/calendar.js"></script>
-            <script src="include/zoo_booking_validation.js"></script>
+            <script src="include/validation.js"></script>
         <?php endif ?>
         <script type="text/javascript">
             var MAX_ZOO_VISITORS = <?=MAX_ZOO_VISITORS?>;
