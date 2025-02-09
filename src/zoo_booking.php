@@ -182,14 +182,12 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
     return $fetch;
 }
 
-$user = $_SESSION["user"];
-$role = $_SESSION["role"];
-
-# Validate user session and redirect if invalid
-if (! (isset($user) and isset($role))) {
+$user = $_SESSION["user"] ?? FALSE;
+$role = $_SESSION["role"] ?? FALSE;
+if (! $user) {
     redirect("login.php");
 }
-if ($_SESSION["role"] != "customer") {
+if (! $role == "customer") {
     redirect("index.php");
 }
 

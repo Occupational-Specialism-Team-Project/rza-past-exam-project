@@ -39,8 +39,11 @@ function cancel_booking($id, $pdo) {
 
 $user = $_SESSION["user"] ?? FALSE;
 $role = $_SESSION["role"] ?? FALSE;
-if (! ($user and ($role == "customer"))) {
+if (! $user) {
     redirect("login.php");
+}
+if (! $role == "customer") {
+    redirect("index.php");
 }
 
 $tickets = get_zoo_tickets($_SESSION["user"], $pdo);
