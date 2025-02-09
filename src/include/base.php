@@ -45,4 +45,4 @@ include_once "include/utils.php"
     </head>
     <body>
         <?php include "header.php" ?>
-        <main style="min-height: 80vh">
+        <main class="mb-5" style="min-height: 80vh">
