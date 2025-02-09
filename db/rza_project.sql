@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2025 at 02:30 PM
+-- Generation Time: Feb 09, 2025 at 09:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -95,7 +95,9 @@ CREATE TABLE `zoo_bookings` (
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime NOT NULL,
   `number_of_people` int(100) NOT NULL DEFAULT 1,
-  `educational_visit` tinyint(1) NOT NULL
+  `educational_visit` tinyint(1) NOT NULL,
+  `booking_key` varchar(64) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -146,6 +148,7 @@ ALTER TABLE `visits`
 --
 ALTER TABLE `zoo_bookings`
   ADD PRIMARY KEY (`zoo_booking_id`),
+  ADD UNIQUE KEY `booking_key` (`booking_key`),
   ADD KEY `zoo_booking_username` (`username`);
 
 --
@@ -175,13 +178,13 @@ ALTER TABLE `visits`
 -- AUTO_INCREMENT for table `zoo_bookings`
 --
 ALTER TABLE `zoo_bookings`
-  MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `zoo_bookings_daily`
 --
 ALTER TABLE `zoo_bookings_daily`
-  MODIFY `zoo_booking_daily_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `zoo_booking_daily_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- Constraints for dumped tables

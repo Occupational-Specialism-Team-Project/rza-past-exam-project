@@ -144,11 +144,23 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
 
         $educational_visit  = $educational_visit ? 1 : 0;
 
+        while (TRUE) { // Keep generating booking keys until a unique one is generated
+            $booking_key = random_int(0, 1000000000);
+            $get_existing_keys = $pdo->prepare("SELECT booking_key FROM zoo_bookings WHERE booking_key = :generated_booking_key");
+            $get_existing_keys->execute(["generated_booking_key" => $booking_key]);
+            $existing_keys = $get_existing_keys->fetchAll();
+            $fetch->result=$existing_keys;
+
+            if (! $existing_keys) {
+                break;
+            }
+        }
+
         $book_zoo_visit = $pdo->prepare(
             "INSERT INTO zoo_bookings
-                (username, start_datetime, end_datetime, number_of_people, educational_visit)
+                (username, start_datetime, end_datetime, number_of_people, educational_visit, booking_key)
             VALUES
-                (:username, :chosen_start_datetime, :chosen_end_datetime, :chosen_number_of_people, :chosen_educational_visit);
+                (:username, :chosen_start_datetime, :chosen_end_datetime, :chosen_number_of_people, :chosen_educational_visit, :generated_booking_key);
             INSERT INTO zoo_bookings_daily
                 (zoo_booking_id, day)
             VALUES " . 
@@ -159,7 +171,8 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
             "chosen_start_datetime" => $start_datetime,
             "chosen_end_datetime" => $end_datetime,
             "chosen_number_of_people" => $number_of_people,
-            "chosen_educational_visit" => $educational_visit
+            "chosen_educational_visit" => $educational_visit,
+            "generated_booking_key" => $booking_key
         ]);
         $fetch->result = $booked_visit;
     } catch (Exception $e) {
