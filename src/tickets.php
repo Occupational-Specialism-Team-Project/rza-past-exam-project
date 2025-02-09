@@ -155,6 +155,7 @@ include_once "include/base.php";
                         </div>
                     <?php endif ?>
                 <?php endif ?>
+                <a href="zoo_booking.php"><button class="btn btn-primary mb-3"><i class="fa-solid fa-arrow-left"></i> Back to zoo booking</button></a>
             </div>
         </section>
     </div>
