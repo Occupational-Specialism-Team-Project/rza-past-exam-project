@@ -17,18 +17,18 @@ function validateZooBooking() {
 
     // Validate start datetime
     if (startDatetimeValue == "") { // Presence Check
-        showValidationMessage(startDatetime, "Value cannot be empty.");
+        showValidationMessage(startDatetime, "Start time cannot be empty.");
     } else if (startDatetimeUnix > endDatetimeUnix) { // Consistency Check
         showValidationMessage(startDatetime, `Start time (${startDatetimeValue.replace("T", " ")}) cannot be later than end time (${endDatetimeValue.replace("T", " ")}).`);
     } else if (startDatetimeUnix < currentDatetimeUnix) { // Consistency Check
-        showValidationMessage(startDatetime, `End time (${startDatetimeValue.replace("T", " ")}) cannot be earlier than the present.`);
+        showValidationMessage(startDatetime, `Start time (${startDatetimeValue.replace("T", " ")}) cannot be earlier than the present.`);
     } else {
         showValidationMessage(startDatetime);
     }
 
     // Validate end datetime
     if (endDatetimeValue == "") { // Presence Check
-        showValidationMessage(endDatetime, "Value cannot be empty.");
+        showValidationMessage(endDatetime, "End time cannot be empty.");
     } else if (endDatetimeUnix < startDatetimeUnix) { // Consistency Check
         showValidationMessage(endDatetime, `End time (${endDatetimeValue.replace("T", " ")}) cannot be earlier than start time (${startDatetimeValue.replace("T", " ")}).`);
     } else if (endDatetimeUnix < currentDatetimeUnix) { // Consistency Check
