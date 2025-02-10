@@ -22,4 +22,6 @@ if ((session_status() !== PHP_SESSION_ACTIVE) and (session_status() === PHP_SESS
     }
 }
 
+$script = basename($_SERVER["PHP_SELF"]);
+
 require "server_settings.php";

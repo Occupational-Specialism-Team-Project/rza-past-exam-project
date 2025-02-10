@@ -1,9 +1,9 @@
 <?php require_once "utils.php" ?>
 
 <header class="shadow sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-dark rza-green">
+    <nav class="navbar navbar-expand-lg navbar-dark rza-background">
         <div class="container-fluid">
-            <a class="navbar-brand fs-2 rza-brand" href="index.php">
+            <a class="navbar-brand fs-2 rza-brand-logo" href="index.php">
                 RZA
                 <i class="fa-solid fa-paw"></i>
             </a>

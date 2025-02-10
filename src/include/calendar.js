@@ -27,7 +27,7 @@ function createDays(data) {
     for (let n = 1; n <= (Object.keys(data).length); n++) {
         var newDay = document.createElement("div");
         newDay.id = "day" + n;
-        newDay.classList.add("border", "border-dark", "rounded", "calendar_day", "text-center", "align-items-center", "bg-success-subtle");
+        newDay.classList.add("border", "border-dark", "rounded", "calendar-day", "text-center", "align-items-center", "bg-success-subtle");
         newDay.innerHTML = n;
 
         // Check if day is fully booked up

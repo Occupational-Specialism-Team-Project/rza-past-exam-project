@@ -105,7 +105,7 @@ include_once "include/base.php";
                                                     <div class="modal-body text-center">
                                                         <p>Show this to a member of staff upon entry or exit.</p>
                                                         <p>Booking key:</p>
-                                                        <i><b style="font-size: 3rem" class="rza-green rza-brand rounded-5 p-2"><?=$ticket["booking_key"]?></b></i>
+                                                        <i><b style="font-size: 3rem" class="rza-background rza-brand-logo rounded-5 p-2"><?=$ticket["booking_key"]?></b></i>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

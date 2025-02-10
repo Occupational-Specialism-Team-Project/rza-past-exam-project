@@ -1,0 +1,19 @@
+:root {
+    --rza-green: #4B6F44;
+    --rza-brown: #645452;
+    --rza-outline-gray: lightgray;
+}
+
+.rza-background {
+    background-color: var(--rza-green);
+}
+
+.rza-brand-logo {
+    text-shadow: -1px -1px 0 var(--rza-outline-gray), 0.5px -1px 0 var(--rza-outline-gray), -1px 0.5px 0 var(--rza-outline-gray), 0.5px 0.5px 0 var(--rza-outline-gray);
+    font-weight: bold;
+    color: var(--rza-brown);
+}
+
+.shadow-up {
+    box-shadow: 0 -0.5rem 1rem rgba(from var(--bs-black) r g b / 0.15);
+}
