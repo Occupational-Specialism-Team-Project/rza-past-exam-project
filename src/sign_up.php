@@ -58,10 +58,10 @@ include_once "include/base.php";
                         <h1 class="text-center card-title">Sign Up</h1>
                     </div>
                     <div class="card-body">    
-                        <input name ="username" type="text" class=" form-control mt-5 p-3 account-input card-input"  placeholder="Enter your username" required>
-                        <input name="password" type="password" class=" form-control mt-5 p-3 account-input card-input " placeholder="Enter your password" required>
-                        <button type="submit" name="login" class="mt-3 mx-auto btn btn-success submit-button">Submit</button>
-                        <a href='login.php'><button type="button" class="mt-3 mx-auto login-signup-button btn btn-primary">Login</button></a>
+                        <input name ="username" type="text" class=" form-control mt-5 p-3 border-black"  placeholder="Enter your username" required>
+                        <input name="password" type="password" class=" form-control mt-5 p-3 border-black" placeholder="Enter your password" required>
+                        <a href='login.php'><button type="button" class="mt-3 mx-auto btn btn-primary border-black">Login</button></a>
+                        <button type="submit" name="login" class="mt-3 mx-auto btn btn-success border-black float-end">Submit</button>
                     </div>
                 </form>
             </div>
