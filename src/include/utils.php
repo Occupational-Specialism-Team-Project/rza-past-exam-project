@@ -22,4 +22,4 @@ if ((session_status() !== PHP_SESSION_ACTIVE) and (session_status() === PHP_SESS
     }
 }
 
-require "settings.php";
+require "server_settings.php";
