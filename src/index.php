@@ -100,7 +100,7 @@ include_once "include/base.php";
                     <i class="card-img-top fa-solid fa-user text-center p-3" style="font-size: 10rem"></i>
                     <div class="card-body d-flex flex-column justify-content-between">
                         <p class="card-text">View account settings, including accessibility features.</p>
-                        <a href="#" class="btn btn-primary">Navigate Here</a>
+                        <a href="user_settings.php" class="btn btn-primary">Navigate Here</a>
                     </div>
                 </div>
             </div>

@@ -50,7 +50,7 @@
                                 Sign up
                             </a></li>
                         <?php else: ?>
-                            <li><a class="dropdown-item" href="#">
+                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "User Settings"): echo " active"; endif ?>" href="user_settings.php">
                                 <i class="fa-solid fa-gear"></i>
                                 Settings
                             </a></li>
