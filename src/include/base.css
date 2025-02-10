@@ -15,5 +15,5 @@
 }
 
 .shadow-up {
-    box-shadow: 0 -0.5rem 1rem rgba(from var(--bs-black) r g b / 0.15);
+    box-shadow: 0 -0.5rem 1rem rgba(var(--bs-black-rgb), 0.15);
 }
