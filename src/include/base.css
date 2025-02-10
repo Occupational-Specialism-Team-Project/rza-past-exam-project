@@ -1,7 +1,7 @@
-:root {
+[data-bs-theme="light"], [data-bs-theme="dark"]{
     --rza-green: #4B6F44;
     --rza-brown: #645452;
-    --rza-outline-gray: lightgray;
+    --rza-outline-gray: #D3D3D3;
 }
 
 .rza-background {
