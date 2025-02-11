@@ -61,10 +61,10 @@ include_once "include/base.php";
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse_<?=$theme["theme_name"]?>" aria-expanded="false"
                                         aria-controls="collapse_<?=$theme["theme_name"]?>" onclick="
-                                            document.getElementById('create_theme').innerHTML = 'Update Theme';
+                                            document.getElementById('update_theme').innerHTML = 'Update Theme';
 
-                                            let chosen_theme = document.getElementById("chosen_theme");
-                                            chosen_theme.value = '<?=$theme["theme_name"]?>';
+                                            let chosen_theme = document.getElementById('chosen_theme');
+                                            chosen_theme.value = '<?=$theme['theme_name']?>';
                                         ">
                                         <?=$theme["theme_name"]?>
                                     </button>
@@ -75,21 +75,29 @@ include_once "include/base.php";
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <label for="body_color_<?=$theme["theme_name"]?>" class="form-label">Body Content Colour:</label>
-                                                <input
-                                                    type="color" class="form-control form-control-color"
-                                                    id="body_color_<?=$theme["theme_name"]?>" name="body_color_<?=$theme["theme_name"]?>"
-                                                    aria-describedby="body_help_<?=$theme["theme_name"]?>"
-                                                    value="<?=clean_hex_color($theme["body_color"])?>"
-                                                >
+                                                <div class="d-flex flex-row justify-content-start gap-3 align-items-center">
+                                                    <input
+                                                        type="color" class="form-control form-control-color"
+                                                        id="body_color_<?=$theme["theme_name"]?>" name="body_color_<?=$theme["theme_name"]?>"
+                                                        aria-describedby="body_help_<?=$theme["theme_name"]?>"
+                                                        value="<?=clean_hex_color($theme["body_color"])?>"
+                                                        onchange="document.getElementById(this.id + '_value').innerHTML = `= ${this.value}`"
+                                                    >
+                                                    <i id="body_color_<?=$theme["theme_name"]?>_value">= <?=clean_hex_color($theme["body_color"])?></i>
+                                                </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <label for="body_bg_<?=$theme["theme_name"]?>" class="form-label">Body Background Colour:</label>
-                                                <input
-                                                    type="color" class="form-control form-control-color"
-                                                    id="body_bg_<?=$theme["theme_name"]?>" name="body_bg_<?=$theme["theme_name"]?>"
-                                                    aria-describedby="body_help_<?=$theme["theme_name"]?>"
-                                                    value="<?=clean_hex_color($theme["body_bg"])?>"
-                                                >
+                                                <div class="d-flex flex-row justify-content-start gap-3 align-items-center">
+                                                    <input
+                                                        type="color" class="form-control form-control-color"
+                                                        id="body_bg_<?=$theme["theme_name"]?>" name="body_bg_<?=$theme["theme_name"]?>"
+                                                        aria-describedby="body_help_<?=$theme["theme_name"]?>"
+                                                        value="<?=clean_hex_color($theme["body_bg"])?>"
+                                                        onchange="document.getElementById(this.id + '_value').innerHTML = `= ${this.value}`"
+                                                    >
+                                                    <i id="body_bg_<?=$theme["theme_name"]?>_value">= <?=clean_hex_color($theme["body_bg"])?></i>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
@@ -101,7 +109,7 @@ include_once "include/base.php";
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseCreateTheme" aria-expanded="false"
                                     aria-controls="collapseCreateTheme" onclick="
-                                        document.getElementById('create_theme').innerHTML = 'Create Theme';
+                                        document.getElementById('update_theme').innerHTML = 'Create Theme';
                                     ">
                                     Create New Theme
                                 </button>
