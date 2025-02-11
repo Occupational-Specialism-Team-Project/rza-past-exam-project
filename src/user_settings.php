@@ -20,7 +20,7 @@ include_once "include/base.php";
             <section id="chooseTheme" class="card">
                 <div class="card-header">
                     <h2 class="card-title">
-                        <i class="fa-solid fa-palette"></i> Choose Themes
+                        <i class="fa-solid fa-palette"></i> Choose Theme
                     </h2>
                 </div>
                 <div class="card-body">
