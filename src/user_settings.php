@@ -24,13 +24,17 @@ include_once "include/base.php";
                     </h2>
                 </div>
                 <div class="card-body">
-                    <select id="selectTheme" class="form-select" aria-label="Select a Theme" onchange="changeTheme(this.options[this.selectedIndex].value)">
+                    <select id="selectTheme" class="form-select" aria-label="Select a Theme"
+                        onchange="
+                            changeTheme(this.options[this.selectedIndex].value);
+                            selectThemeOption(this.options[this.selectedIndex].value)
+                        ">
                         <option id="system" value="system">System</option>
                         <option id="light" value="light">Light</option>
                         <option id="dark" value="dark">Dark</option>
                         <option id="high_contrast" value="high_contrast">High Contrast</option>
                         <?php foreach ($themes->result as $theme): ?>
-                            <option id="<?=$theme["theme_name"]?>" value="<?=$theme["theme_name"]?>">Test Theme</option>
+                            <option id="<?=$theme["theme_name"]?>" value="<?=$theme["theme_name"]?>"><?=$theme["theme_name"]?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -46,11 +50,43 @@ include_once "include/base.php";
                     </h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="accordion" id="themesAccordion">
+                        <?php foreach ($themes->result as $theme): ?>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_<?=$theme["theme_name"]?>" aria-expanded="false"
+                                        aria-controls="collapse_<?=$theme["theme_name"]?>" onclick="
+                                            document.getElementById('create_theme').innerHTML = 'Update Theme';
+                                        ">
+                                        <?=$theme["theme_name"]?>
+                                    </button>
+                                </h2>
+                                <div id="collapse_<?=$theme["theme_name"]?>" class="accordion-collapse collapse" data-bs-parent="#themesAccordion">
+                                    <form action="" method="POST" class="accordion-body">
+                                    </form>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseCreateTheme" aria-expanded="false"
+                                    aria-controls="collapseCreateTheme" onclick="
+                                        document.getElementById('create_theme').innerHTML = 'Create Theme';
+                                    ">
+                                    Create New Theme
+                                </button>
+                            </h2>
+                            <div id="collapseCreateTheme" class="accordion-collapse collapse" data-bs-parent="#themesAccordion">
+                                <form action="" method="POST" class="accordion-body">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" href="#" class="btn btn-success" id="create_theme" name="create_theme">Go somewhere</a>
+                    <button type="submit" href="#" class="btn btn-success" id="create_theme" name="create_theme">Update Theme</a>
                 </div>
             </section>
         </div>
