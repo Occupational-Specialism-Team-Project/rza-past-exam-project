@@ -15,20 +15,20 @@ include_once "include/base.php";
         <div class="col-md-4 mx-auto mb-5">
             <section id="chooseTheme" class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Choose Themes</h2>
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-palette"></i> Choose Themes
+                    </h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="system">System</option>
-                        <option value="light">Light</option>
-                        <option value="dark">Dark</option>
-                        <option value="High Contrast">High Contrast</option>
+                    <select id="selectTheme" class="form-select" aria-label="Select a Theme" onchange="changeTheme(this.options[this.selectedIndex].value)">
+                        <option id="system" value="system">System</option>
+                        <option id="light" value="light">Light</option>
+                        <option id="dark" value="dark">Dark</option>
+                        <option id="high_contrast" value="high_contrast">High Contrast</option>
+                        <?php foreach ($themes->result as $theme): ?>
+                            <option id="<?=$theme["theme_name"]?>" value="<?=$theme["theme_name"]?>">Test Theme</option>
+                        <?php endforeach ?>
                     </select>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" href="#" class="btn btn-success" id="save_theme_settings" name="save_theme_settings">Go somewhere</a>
                 </div>
             </section>
         </div>
@@ -37,7 +37,9 @@ include_once "include/base.php";
         <div class="col-md-4 mx-auto mb-5">
             <section id="createOrEditTheme" class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Create/Edit Theme</h2>
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-paintbrush"></i> Create/Edit Theme
+                    </h2>
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

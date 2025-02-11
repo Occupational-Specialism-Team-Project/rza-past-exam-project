@@ -60,6 +60,8 @@
             <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
             <script src="include/calendar.js"></script>
             <script src="include/validation.js"></script>
+        <?php elseif ($script == "user_settings.php"): ?>
+            <script src="include/user_settings.js"></script>
         <?php endif ?>
         <script type="text/javascript">
             var MAX_ZOO_VISITORS = <?=MAX_ZOO_VISITORS?>;
