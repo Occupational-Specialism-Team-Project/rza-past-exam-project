@@ -60,7 +60,7 @@ if ($username) {
         <style>
             <?php if (isset($themes->result)): ?>
                 <?php foreach ($themes->result as $theme): ?>
-                    <?php include_once "theme.php"?>
+                    <?php include "theme.php"?>
                 <?php endforeach ?>
             <?php endif ?>
 
