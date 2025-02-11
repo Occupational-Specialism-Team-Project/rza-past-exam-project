@@ -25,7 +25,7 @@ function updateTheme() {
 
 function removeTheme() {
     theme = localStorage.getItem("theme");
-    if (theme != "dark" || theme != "light") {
+    if (theme != "dark" && theme != "light") {
         localStorage.removeItem("theme");
     }
 
