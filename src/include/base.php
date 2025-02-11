@@ -10,7 +10,7 @@ function get_themes($username, $pdo) {
     try {
         $get_themes = $pdo->prepare(
             "SELECT theme_name, body_color, body_bg,
-            secondary, secondary_color, secondary_bg, tertiary_color, tertiary_bg, emphasis_color, border_color,
+            secondary, secondary_color, secondary_bg, secondary_bg_subtle, tertiary_color, tertiary_bg, emphasis_color, border_color,
             primary_color, primary_bg_subtle, primary_border_subtle, primary_text_emphasis,
             success, success_bg_subtle, success_border_subtle, success_text_emphasis,
             danger, danger_bg_subtle, danger_border_subtle, danger_text_emphasis,
@@ -67,6 +67,6 @@ if ($username) {
             /* Add inline CSS here */
         </style>
     </head>
-    <body data-bs-theme="test_theme">
+    <body>
         <?php include "header.php" ?>
         <main class="mb-5" style="min-height: 80vh">
