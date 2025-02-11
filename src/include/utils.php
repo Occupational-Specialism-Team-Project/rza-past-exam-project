@@ -7,6 +7,19 @@ function redirect($url) {
     exit();
 }
 
+function clean_hex_color($hex) {
+    $hex = strtolower($hex);
+    if (strlen($hex) == 7 || strlen($hex) == 4)
+        $hex = substr($hex, -(strlen($hex) - 1));
+
+    if (preg_match('/^[a-f0-9]{6}$/i', $hex))
+        return "#$hex";
+    elseif (preg_match('/^[a-f0-9]{3}$/i', $hex))
+        return "#$hex[0]$hex[0]$hex[1]$hex[1]$hex[2]$hex[2]";
+    else
+        return "#000000";
+}
+
 function hex_to_rgb($hex, $alpha = FALSE) {
     $hex = str_replace('#', '', $hex);
     $length = strlen($hex);

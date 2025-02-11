@@ -14,9 +14,12 @@ function selectThemeOption(theme) {
     if (theme) {
         if (theme != "dark" && theme != "light" && theme != "high_contrast") {
             let theme_form_option = document.querySelector("#collapse_" + theme);
-            if (theme_form_option) {
+            let chosen_theme = document.getElementById("chosen_theme");
+            if (theme_form_option && chosen_theme) {
                 let theme_form_collapse = new bootstrap.Collapse(theme_form_option);
                 theme_form_collapse.show();
+
+                chosen_theme.value = theme;
             }
         }
     }

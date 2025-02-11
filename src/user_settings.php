@@ -6,6 +6,10 @@ if (! isset($_SESSION["user"])) {
     redirect("login.php");
 }
 
+function updateTheme($theme_name) {
+
+}
+
 const PAGE_TITLE = "User Settings";
 include_once "include/base.php";
 
@@ -42,7 +46,7 @@ include_once "include/base.php";
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 mx-auto mb-5">
+        <form action="" method="POST" class="col-md-4 mx-auto mb-5">
             <section id="createOrEditTheme" class="card">
                 <div class="card-header">
                     <h2 class="card-title">
@@ -53,23 +57,47 @@ include_once "include/base.php";
                     <div class="accordion" id="themesAccordion">
                         <?php foreach ($themes->result as $theme): ?>
                             <div class="accordion-item">
-                                <h2 class="accordion-header">
+                                <h3 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse_<?=$theme["theme_name"]?>" aria-expanded="false"
                                         aria-controls="collapse_<?=$theme["theme_name"]?>" onclick="
                                             document.getElementById('create_theme').innerHTML = 'Update Theme';
+
+                                            let chosen_theme = document.getElementById("chosen_theme");
+                                            chosen_theme.value = '<?=$theme["theme_name"]?>';
                                         ">
                                         <?=$theme["theme_name"]?>
                                     </button>
-                                </h2>
+                                </h3>
                                 <div id="collapse_<?=$theme["theme_name"]?>" class="accordion-collapse collapse" data-bs-parent="#themesAccordion">
-                                    <form action="" method="POST" class="accordion-body">
-                                    </form>
+                                    <div class="accordion-body">
+                                        <h4 class="mb-3" id="body_help_<?=$theme["theme_name"]?>">Body</h4>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <label for="body_color_<?=$theme["theme_name"]?>" class="form-label">Body Content Colour:</label>
+                                                <input
+                                                    type="color" class="form-control form-control-color"
+                                                    id="body_color_<?=$theme["theme_name"]?>" name="body_color_<?=$theme["theme_name"]?>"
+                                                    aria-describedby="body_help_<?=$theme["theme_name"]?>"
+                                                    value="<?=clean_hex_color($theme["body_color"])?>"
+                                                >
+                                            </li>
+                                            <li class="list-group-item">
+                                                <label for="body_bg_<?=$theme["theme_name"]?>" class="form-label">Body Background Colour:</label>
+                                                <input
+                                                    type="color" class="form-control form-control-color"
+                                                    id="body_bg_<?=$theme["theme_name"]?>" name="body_bg_<?=$theme["theme_name"]?>"
+                                                    aria-describedby="body_help_<?=$theme["theme_name"]?>"
+                                                    value="<?=clean_hex_color($theme["body_bg"])?>"
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach ?>
                         <div class="accordion-item">
-                            <h2 class="accordion-header">
+                            <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseCreateTheme" aria-expanded="false"
                                     aria-controls="collapseCreateTheme" onclick="
@@ -77,19 +105,27 @@ include_once "include/base.php";
                                     ">
                                     Create New Theme
                                 </button>
-                            </h2>
+                            </h3>
                             <div id="collapseCreateTheme" class="accordion-collapse collapse" data-bs-parent="#themesAccordion">
-                                <form action="" method="POST" class="accordion-body">
-                                </form>
+                                <div class="accordion-body">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" href="#" class="btn btn-success" id="create_theme" name="create_theme">Update Theme</a>
+                    <input type="hidden" id="chosen_theme" name="chosen_theme">
+                    <button type="submit" href="#" class="btn btn-success" id="update_theme" name="update_theme">Update Theme</button>
+                    <?php
+                        if (isset($_POST["update_theme"])) {
+                            var_dump($_POST["chosen_theme"]);
+                            var_dump($_POST["body_color_".$_POST["chosen_theme"]]);
+                            var_dump($_POST["body_bg_".$_POST["chosen_theme"]]);
+                        }
+                    ?>
                 </div>
             </section>
-        </div>
+        </form>
     </div>
 </article>
 
