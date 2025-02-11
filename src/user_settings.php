@@ -2,6 +2,10 @@
 
 require_once "include/utils.php";
 
+if (! isset($_SESSION["user"])) {
+    redirect("login.php");
+}
+
 const PAGE_TITLE = "User Settings";
 include_once "include/base.php";
 

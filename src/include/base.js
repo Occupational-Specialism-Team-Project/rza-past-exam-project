@@ -23,4 +23,13 @@ function updateTheme() {
     }
 }
 
+function removeTheme() {
+    theme = localStorage.getItem("theme");
+    if (theme != "dark" || theme != "light") {
+        localStorage.removeItem("theme");
+    }
+
+    updateTheme();
+}
+
 updateTheme();

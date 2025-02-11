@@ -66,6 +66,10 @@
         <script type="text/javascript">
             var MAX_ZOO_VISITORS = <?=MAX_ZOO_VISITORS?>;
             var MAX_TICKET_DURATION = <?=MAX_TICKET_DURATION?>;
+
+            <?php if (isset($_REQUEST["logout"])): ?>
+                removeTheme();
+            <?php endif ?>
         </script>
         <!-- Add extra JavaScript here -->
     </body>
