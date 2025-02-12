@@ -63,31 +63,33 @@ include_once "include/base.php";
     <title>Document</title>
 </head>
 <body>
-    <?php if($_SESSION['role']=="admin"): ?>
+<div class="card">
+  <div class="card-header">
+    Upload Files
+  </div>
+  <div class="card-body">
+  <?php if($_SESSION['role']=="admin"): ?>
     <form action=""  enctype="multipart/form-data" method="POST">
         <input type="file" name="file">
         <button name="upload" type="submit">UPLOAD</button>
     </form>
     <?php endif; ?>
-    <div>
-    <table>
-        <tr>
-            <th>File download</th>
-        </tr>
-        <?php foreach ($result as $file): ?>
-            <?php 
-                $file_path = 'uploads/' . $file['files'];
-            ?>
-            <tr>
-                <td>
-                    <a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>">
-                        <?php echo $file['files']; ?>
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+  </div>
 </div>
+
+    <div>
+    <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    File Download
+  </div>
+  <?php foreach ($result as $file): ?>
+  <?php $file_path = 'uploads/' . $file['files'];?>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>"><?php echo $file['files']; ?></a></li>
+  </ul>
+  <?php endforeach; ?>
+</div>
+
 
 </body>
 </html>
