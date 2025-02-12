@@ -70,7 +70,6 @@ include_once "include/base.php";
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse_<?=$theme["theme_name"]?>" aria-expanded="false"
                                         aria-controls="collapse_<?=$theme["theme_name"]?>" onclick="
-                                            selectTheme('<?=$theme['theme_name']?>')
                                         ">
                                         <?=$theme["theme_name"]?>
                                     </button>
@@ -471,9 +470,8 @@ include_once "include/base.php";
                             <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseCreateTheme" aria-expanded="false"
-                                    aria-controls="collapseCreateTheme" onclick="
-                                        selectTheme()
-                                    ">
+                                    aria-controls="collapseCreateTheme"
+                                >
                                     Create New Theme
                                 </button>
                             </h3>
