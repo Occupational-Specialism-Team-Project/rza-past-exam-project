@@ -10,6 +10,15 @@ function updateTheme($theme_name) {
 
 }
 
+function create_color_input($theme_name, $setting, $setting_formal, $setting_value, $group) {
+    include "include/color_input.php";
+}
+
+?>
+
+
+<?php
+
 const PAGE_TITLE = "User Settings";
 include_once "include/base.php";
 
@@ -30,8 +39,8 @@ include_once "include/base.php";
                 <div class="card-body">
                     <select id="selectTheme" class="form-select" aria-label="Select a Theme"
                         onchange="
-                            changeTheme(this.options[this.selectedIndex].value);
                             selectThemeOption(this.options[this.selectedIndex].value)
+                            changeTheme(this.options[this.selectedIndex].value);
                         ">
                         <option id="system" value="system">System</option>
                         <option id="light" value="light">Light</option>
@@ -61,44 +70,398 @@ include_once "include/base.php";
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse_<?=$theme["theme_name"]?>" aria-expanded="false"
                                         aria-controls="collapse_<?=$theme["theme_name"]?>" onclick="
-                                            document.getElementById('update_theme').innerHTML = 'Update Theme';
-
-                                            let chosen_theme = document.getElementById('chosen_theme');
-                                            chosen_theme.value = '<?=$theme['theme_name']?>';
+                                            selectTheme('<?=$theme['theme_name']?>')
                                         ">
                                         <?=$theme["theme_name"]?>
                                     </button>
                                 </h3>
                                 <div id="collapse_<?=$theme["theme_name"]?>" class="accordion-collapse collapse" data-bs-parent="#themesAccordion">
                                     <div class="accordion-body">
-                                        <h4 class="mb-3" id="body_help_<?=$theme["theme_name"]?>">Body</h4>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <label for="body_color_<?=$theme["theme_name"]?>" class="form-label">Body Content Colour:</label>
-                                                <div class="d-flex flex-row justify-content-start gap-3 align-items-center">
-                                                    <input
-                                                        type="color" class="form-control form-control-color"
-                                                        id="body_color_<?=$theme["theme_name"]?>" name="body_color_<?=$theme["theme_name"]?>"
-                                                        aria-describedby="body_help_<?=$theme["theme_name"]?>"
-                                                        value="<?=clean_hex_color($theme["body_color"])?>"
-                                                        onchange="document.getElementById(this.id + '_value').innerHTML = `= ${this.value}`"
-                                                    >
-                                                    <i id="body_color_<?=$theme["theme_name"]?>_value">= <?=clean_hex_color($theme["body_color"])?></i>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <label for="body_bg_<?=$theme["theme_name"]?>" class="form-label">Body Background Colour:</label>
-                                                <div class="d-flex flex-row justify-content-start gap-3 align-items-center">
-                                                    <input
-                                                        type="color" class="form-control form-control-color"
-                                                        id="body_bg_<?=$theme["theme_name"]?>" name="body_bg_<?=$theme["theme_name"]?>"
-                                                        aria-describedby="body_help_<?=$theme["theme_name"]?>"
-                                                        value="<?=clean_hex_color($theme["body_bg"])?>"
-                                                        onchange="document.getElementById(this.id + '_value').innerHTML = `= ${this.value}`"
-                                                    >
-                                                    <i id="body_bg_<?=$theme["theme_name"]?>_value">= <?=clean_hex_color($theme["body_bg"])?></i>
-                                                </div>
-                                            </li>
+                                        <?php $theme_name = $theme["theme_name"] ?>
+
+                                        <?php $group = "body" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Body</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "body_color",
+                                                    "Body Content Colour",
+                                                    $theme["body_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "body_bg",
+                                                    "Body Background Colour",
+                                                    $theme["body_bg"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "secondary" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Secondary</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "secondary",
+                                                    "Secondary Colour",
+                                                    $theme["secondary"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "secondary_color",
+                                                    "Secondary Content Colour",
+                                                    $theme["secondary_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "secondary_bg",
+                                                    "Secondary Background Colour",
+                                                    $theme["secondary_bg"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "secondary_bg_subtle",
+                                                    "Secondary Background Colour (Subtle)",
+                                                    $theme["secondary_bg_subtle"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "tertiary" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Tertiary</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "tertiary_color",
+                                                    "Tertiary Content Colour",
+                                                    $theme["tertiary_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "tertiary_bg",
+                                                    "Tertiary Background Colour",
+                                                    $theme["tertiary_bg"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "emphasis" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Emphasis</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "emphasis_color",
+                                                    "Emphasis Content Colour",
+                                                    $theme["emphasis_color"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "border" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Border</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "border_color",
+                                                    "Border Colour",
+                                                    $theme["border_color"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "primary" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Primary</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "primary_color",
+                                                    "Primary Colour",
+                                                    $theme["primary_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "primary_bg_subtle",
+                                                    "Primary Background Colour (Subtle)",
+                                                    $theme["primary_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "primary_border_subtle",
+                                                    "Primary Border Colour (Subtle)",
+                                                    $theme["primary_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "primary_text_emphasis",
+                                                    "Primary Text Colour (Emphasis)",
+                                                    $theme["primary_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "success" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Success</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "success",
+                                                    "Success Colour",
+                                                    $theme["success"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "success_bg_subtle",
+                                                    "Success Background Colour (Subtle)",
+                                                    $theme["success_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "success_border_subtle",
+                                                    "Success Border Colour (Subtle)",
+                                                    $theme["success_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "success_text_emphasis",
+                                                    "Success Text Colour (Emphasis)",
+                                                    $theme["success_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "danger" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Danger</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "danger",
+                                                    "Danger Colour",
+                                                    $theme["danger"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "danger_bg_subtle",
+                                                    "Danger Background Colour (Subtle)",
+                                                    $theme["danger_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "danger_border_subtle",
+                                                    "Danger Border Colour (Subtle)",
+                                                    $theme["danger_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "danger_text_emphasis",
+                                                    "Danger Text Colour (Emphasis)",
+                                                    $theme["danger_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "warning" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Warning</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "warning",
+                                                    "Warning Colour",
+                                                    $theme["warning"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "warning_bg_subtle",
+                                                    "Warning Background Colour (Subtle)",
+                                                    $theme["warning_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "warning_border_subtle",
+                                                    "Warning Border Colour (Subtle)",
+                                                    $theme["warning_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "warning_text_emphasis",
+                                                    "Warning Text Colour (Emphasis)",
+                                                    $theme["warning_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "info" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Info</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "info",
+                                                    "Info Colour",
+                                                    $theme["info"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "info_bg_subtle",
+                                                    "Info Background Colour (Subtle)",
+                                                    $theme["info_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "info_border_subtle",
+                                                    "Info Border Colour (Subtle)",
+                                                    $theme["info_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "info_text_emphasis",
+                                                    "Info Text Colour (Emphasis)",
+                                                    $theme["info_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "light" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Light</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "light",
+                                                    "Light Colour",
+                                                    $theme["light"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "light_bg_subtle",
+                                                    "Light Background Colour (Subtle)",
+                                                    $theme["light_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "light_border_subtle",
+                                                    "Light Border Colour (Subtle)",
+                                                    $theme["light_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "light_text_emphasis",
+                                                    "Light Text Colour (Emphasis)",
+                                                    $theme["light_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "dark" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Dark</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "dark",
+                                                    "Dark Colour",
+                                                    $theme["dark"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "dark_bg_subtle",
+                                                    "Dark Background Colour (Subtle)",
+                                                    $theme["dark_bg_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "dark_border_subtle",
+                                                    "Dark Border Colour (Subtle)",
+                                                    $theme["dark_border_subtle"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "dark_text_emphasis",
+                                                    "Dark Text Colour (Emphasis)",
+                                                    $theme["dark_text_emphasis"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
+
+                                        <?php $group = "forms" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>">Forms</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "form_valid_color",
+                                                    "Form Valid Colour",
+                                                    $theme["form_valid_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "form_valid_border_color",
+                                                    "Form Valid Border Colour",
+                                                    $theme["form_valid_border_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "form_invalid_color",
+                                                    "Form Invalid Colour",
+                                                    $theme["form_invalid_color"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "form_invalid_border_color",
+                                                    "Form Invalid Border Colour",
+                                                    $theme["form_invalid_border_color"],
+                                                    $group
+                                                );
+                                            ?>
                                         </ul>
                                     </div>
                                 </div>
@@ -109,7 +472,7 @@ include_once "include/base.php";
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseCreateTheme" aria-expanded="false"
                                     aria-controls="collapseCreateTheme" onclick="
-                                        document.getElementById('update_theme').innerHTML = 'Create Theme';
+                                        selectTheme()
                                     ">
                                     Create New Theme
                                 </button>
@@ -119,11 +482,12 @@ include_once "include/base.php";
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="card-footer">
+                <div id="themeCrud" class="card-footer d-none">
                     <input type="hidden" id="chosen_theme" name="chosen_theme">
                     <button type="submit" href="#" class="btn btn-success" id="update_theme" name="update_theme">Update Theme</button>
+                    <a id="delete_theme" href="user_settings.php"><button type="button" class="btn btn-danger">Delete Theme</button></a>
                     <?php
                         if (isset($_POST["update_theme"])) {
                             var_dump($_POST["chosen_theme"]);
