@@ -6,12 +6,171 @@ if (! isset($_SESSION["user"])) {
     redirect("login.php");
 }
 
-function updateTheme($theme_name) {
+function update_theme(
+    $username, $theme_name, 
+    $body_color,
+    $body_bg,
+    $secondary,
+    $secondary_color,
+    $secondary_bg,
+    $secondary_bg_subtle,
+    $tertiary_color,
+    $tertiary_bg,
+    $emphasis_color,
+    $border_color,
+    $primary_color,
+    $primary_bg_subtle,
+    $primary_border_subtle,
+    $primary_text_emphasis,
+    $success,
+    $success_bg_subtle,
+    $success_border_subtle,
+    $success_text_emphasis,
+    $danger ,
+    $danger_bg_subtle,
+    $danger_border_subtle,
+    $danger_text_emphasis,
+    $warning,
+    $warning_bg_subtle,
+    $warning_border_subtle,
+    $warning_text_emphasis,
+    $info,
+    $info_bg_subtle,
+    $info_border_subtle,
+    $info_text_emphasis,
+    $light,
+    $light_bg_subtle,
+    $light_border_subtle,
+    $light_text_emphasis,
+    $dark,
+    $dark_bg_subtle,
+    $dark_border_subtle,
+    $dark_text_emphasis,
+    $form_valid_color,
+    $form_valid_border_color,
+    $form_invalid_color,
+    $form_invalid_border_color,
+    $rza_green,
+    $rza_brown,
+    $rza_outline_gray,
+    $pdo
+) {
+    $fetch = new Fetch();
+    try {
+        $update_theme = $pdo->prepare(
+            "UPDATE themes
+            SET
+                body_color = :body_color,
+                body_bg = :body_bg,
+                secondary = :secondary,
+                secondary_color = :secondary_color,
+                secondary_bg = :secondary_bg,
+                secondary_bg_subtle = :secondary_bg_subtle,
+                tertiary_color = :tertiary_color,
+                tertiary_bg = :tertiary_bg,
+                emphasis_color = :emphasis_color,
+                border_color = :border_color,
+                primary_color = :primary_color,
+                primary_bg_subtle = :primary_bg_subtle,
+                primary_border_subtle = :primary_border_subtle,
+                primary_text_emphasis = :primary_text_emphasis,
+                success = :success,
+                success_bg_subtle = :success_bg_subtle,
+                success_border_subtle = :success_border_subtle,
+                success_text_emphasis = :success_text_emphasis,
+                danger = :danger,
+                danger_bg_subtle = :danger_bg_subtle,
+                danger_border_subtle = :danger_border_subtle,
+                danger_text_emphasis = :danger_text_emphasis,
+                warning = :warning,
+                warning_bg_subtle = :warning_bg_subtle,
+                warning_border_subtle = :warning_border_subtle,
+                warning_text_emphasis = :warning_text_emphasis,
+                info = :info,
+                info_bg_subtle = :info_bg_subtle,
+                info_border_subtle = :info_border_subtle,
+                info_text_emphasis = :info_text_emphasis,
+                light = :light,
+                light_bg_subtle = :light_bg_subtle,
+                light_border_subtle = :light_border_subtle,
+                light_text_emphasis = :light_text_emphasis,
+                dark = :dark,
+                dark_bg_subtle = :dark_bg_subtle,
+                dark_border_subtle = :dark_border_subtle,
+                dark_text_emphasis = :dark_text_emphasis,
+                form_valid_color = :form_valid_color,
+                form_valid_border_color = :form_valid_border_color,
+                form_invalid_color = :form_invalid_color,
+                form_invalid_border_color = :form_invalid_border_color,
+                rza_green = :rza_green,
+                rza_brown = :rza_brown,
+                rza_outline_gray = :rza_outline_gray
+            WHERE (username = :username) AND (theme_name = :theme_name)"
+        );
+        $updated_theme = $update_theme->execute([
+            "username" => $username,
+            "theme_name" => $theme_name,
+            "body_color" => $body_color,
+            "body_bg" => $body_bg,
+            "secondary" => $secondary,
+            "secondary_color" => $secondary_color,
+            "secondary_bg" => $secondary_bg,
+            "secondary_bg_subtle" => $secondary_bg_subtle,
+            "tertiary_color" => $tertiary_color,
+            "tertiary_bg" => $tertiary_bg,
+            "emphasis_color" => $emphasis_color,
+            "border_color" => $border_color,
+            "primary_color" => $primary_color,
+            "primary_bg_subtle" => $primary_bg_subtle,
+            "primary_border_subtle" => $primary_border_subtle,
+            "primary_text_emphasis" => $primary_text_emphasis,
+            "success" => $success,
+            "success_bg_subtle" => $success_bg_subtle,
+            "success_border_subtle" => $success_border_subtle,
+            "success_text_emphasis" => $success_text_emphasis,
+            "danger" => $danger,
+            "danger_bg_subtle" => $danger_bg_subtle,
+            "danger_border_subtle" => $danger_border_subtle,
+            "danger_text_emphasis" => $danger_text_emphasis,
+            "warning" => $warning,
+            "warning_bg_subtle" => $warning_bg_subtle,
+            "warning_border_subtle" => $warning_border_subtle,
+            "warning_text_emphasis" => $warning_text_emphasis,
+            "info" => $info,
+            "info_bg_subtle" => $info_bg_subtle,
+            "info_border_subtle" => $info_border_subtle,
+            "info_text_emphasis" => $info_text_emphasis,
+            "light" => $light,
+            "light_bg_subtle" => $light_bg_subtle,
+            "light_border_subtle" => $light_border_subtle,
+            "light_text_emphasis" => $light_text_emphasis,
+            "dark" => $dark,
+            "dark_bg_subtle" => $dark_bg_subtle,
+            "dark_border_subtle" => $dark_border_subtle,
+            "dark_text_emphasis" => $dark_text_emphasis,
+            "form_valid_color" => $form_valid_color,
+            "form_valid_border_color" => $form_valid_border_color,
+            "form_invalid_color" => $form_invalid_color,
+            "form_invalid_border_color" => $form_invalid_border_color,
+            "rza_green" => $rza_green,
+            "rza_brown" => $rza_brown,
+            "rza_outline_gray" => $rza_outline_gray
+        ]);
+        $fetch->result = $updated_theme;
+    } catch (Exception $e) {
+        $fetch->error = $e;
+    }
 
+    return $fetch;
 }
 
 function create_color_input($theme_name, $setting, $setting_formal, $setting_value, $group) {
     include "include/color_input.php";
+}
+
+function get_color_input($chosen_theme, $setting) {
+    $color_input = $_POST["{$setting}_{$chosen_theme}"];
+    return $color_input;
 }
 
 ?>
@@ -462,6 +621,34 @@ include_once "include/base.php";
                                                 );
                                             ?>
                                         </ul>
+
+                                        <?php $group = "rza" ?>
+                                        <h4 class="mb-3" id="<?=$group?>_help_<?=$theme_name?>"><abbr title="Riget Zoo Adventures">RZA</abbr> Colours</h4>
+                                        <ul class="list-group mb-3">
+                                            <?php
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "rza_green",
+                                                    "RZA Green",
+                                                    $theme["rza_green"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "rza_brown",
+                                                    "RZA Brown",
+                                                    $theme["rza_brown"],
+                                                    $group
+                                                );
+                                                create_color_input(
+                                                    $theme_name,
+                                                    "rza_outline_gray",
+                                                    "RZA Outline Gray",
+                                                    $theme["rza_outline_gray"],
+                                                    $group
+                                                );
+                                            ?>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -488,9 +675,122 @@ include_once "include/base.php";
                     <a id="delete_theme" href="user_settings.php"><button type="button" class="btn btn-danger">Delete Theme</button></a>
                     <?php
                         if (isset($_POST["update_theme"])) {
-                            var_dump($_POST["chosen_theme"]);
-                            var_dump($_POST["body_color_".$_POST["chosen_theme"]]);
-                            var_dump($_POST["body_bg_".$_POST["chosen_theme"]]);
+                            $chosen_theme = $_POST["chosen_theme"];
+                            $username = $_SESSION["user"];
+
+                            $body_color = get_color_input($chosen_theme, "body_color");
+                            $body_bg = get_color_input($chosen_theme, "body_bg");
+
+                            $secondary = get_color_input($chosen_theme, "secondary");
+                            $secondary_color = get_color_input($chosen_theme, "secondary_color");
+                            $secondary_bg = get_color_input($chosen_theme, "secondary_bg");
+                            $secondary_bg_subtle = get_color_input($chosen_theme, "secondary_bg_subtle");
+
+                            $tertiary_color = get_color_input($chosen_theme, "tertiary_color");
+                            $tertiary_bg = get_color_input($chosen_theme, "tertiary_bg");
+
+                            $emphasis_color = get_color_input($chosen_theme, "emphasis_color");
+
+                            $border_color = get_color_input($chosen_theme, "border_color");
+
+                            $primary_color = get_color_input($chosen_theme, "primary_color");
+                            $primary_bg_subtle = get_color_input($chosen_theme, "primary_bg_subtle");
+                            $primary_border_subtle = get_color_input($chosen_theme, "primary_border_subtle");
+                            $primary_text_emphasis = get_color_input($chosen_theme, "primary_text_emphasis");
+
+                            $success = get_color_input($chosen_theme, "success");
+                            $success_bg_subtle = get_color_input($chosen_theme, "success_bg_subtle");
+                            $success_border_subtle = get_color_input($chosen_theme, "success_border_subtle");
+                            $success_text_emphasis = get_color_input($chosen_theme, "success_text_emphasis");
+
+                            $danger = get_color_input($chosen_theme, "danger");
+                            $danger_bg_subtle = get_color_input($chosen_theme, "danger_bg_subtle");
+                            $danger_border_subtle = get_color_input($chosen_theme, "danger_border_subtle");
+                            $danger_text_emphasis = get_color_input($chosen_theme, "danger_text_emphasis");
+
+                            $warning = get_color_input($chosen_theme, "warning");
+                            $warning_bg_subtle = get_color_input($chosen_theme, "warning_bg_subtle");
+                            $warning_border_subtle = get_color_input($chosen_theme, "warning_border_subtle");
+                            $warning_text_emphasis = get_color_input($chosen_theme, "warning_text_emphasis");
+
+                            $info = get_color_input($chosen_theme, "info");
+                            $info_bg_subtle = get_color_input($chosen_theme, "info_bg_subtle");
+                            $info_border_subtle = get_color_input($chosen_theme, "info_border_subtle");
+                            $info_text_emphasis = get_color_input($chosen_theme, "info_text_emphasis");
+
+                            $light = get_color_input($chosen_theme, "light");
+                            $light_bg_subtle = get_color_input($chosen_theme, "light_bg_subtle");
+                            $light_border_subtle = get_color_input($chosen_theme, "light_border_subtle");
+                            $light_text_emphasis = get_color_input($chosen_theme, "light_text_emphasis");
+
+                            $dark = get_color_input($chosen_theme, "dark");
+                            $dark_bg_subtle = get_color_input($chosen_theme, "dark_bg_subtle");
+                            $dark_border_subtle = get_color_input($chosen_theme, "dark_border_subtle");
+                            $dark_text_emphasis = get_color_input($chosen_theme, "dark_text_emphasis");
+
+                            $form_valid_color = get_color_input($chosen_theme, "form_valid_color");
+                            $form_valid_border_color = get_color_input($chosen_theme, "form_valid_border_color");
+                            $form_invalid_color = get_color_input($chosen_theme, "form_invalid_color");
+                            $form_invalid_border_color = get_color_input($chosen_theme, "form_invalid_border_color");
+
+                            $rza_green = get_color_input($chosen_theme, "rza_green");
+                            $rza_brown = get_color_input($chosen_theme, "rza_brown");
+                            $rza_outline_gray = get_color_input($chosen_theme, "rza_outline_gray");
+
+                            $updated_theme = update_theme(
+                                $username, $chosen_theme, 
+                                $body_color,
+                                $body_bg,
+                                $secondary,
+                                $secondary_color,
+                                $secondary_bg,
+                                $secondary_bg_subtle,
+                                $tertiary_color,
+                                $tertiary_bg,
+                                $emphasis_color,
+                                $border_color,
+                                $primary_color,
+                                $primary_bg_subtle,
+                                $primary_border_subtle,
+                                $primary_text_emphasis,
+                                $success,
+                                $success_bg_subtle,
+                                $success_border_subtle,
+                                $success_text_emphasis,
+                                $danger ,
+                                $danger_bg_subtle,
+                                $danger_border_subtle,
+                                $danger_text_emphasis,
+                                $warning,
+                                $warning_bg_subtle,
+                                $warning_border_subtle,
+                                $warning_text_emphasis,
+                                $info,
+                                $info_bg_subtle,
+                                $info_border_subtle,
+                                $info_text_emphasis,
+                                $light,
+                                $light_bg_subtle,
+                                $light_border_subtle,
+                                $light_text_emphasis,
+                                $dark,
+                                $dark_bg_subtle,
+                                $dark_border_subtle,
+                                $dark_text_emphasis,
+                                $form_valid_color,
+                                $form_valid_border_color,
+                                $form_invalid_color,
+                                $form_invalid_border_color,
+                                $rza_green,
+                                $rza_brown,
+                                $rza_outline_gray,
+                                $pdo
+                            );
+                            var_dump($updated_theme->result);
+                            var_dump($updated_theme->error);
+                        }
+                        if (isset($_GET["delete_theme"])) {
+                            var_dump($_GET["delete_theme"]);
                         }
                     ?>
                 </div>
