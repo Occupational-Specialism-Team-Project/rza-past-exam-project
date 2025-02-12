@@ -26,7 +26,7 @@ function update_theme(
     $success_bg_subtle,
     $success_border_subtle,
     $success_text_emphasis,
-    $danger ,
+    $danger,
     $danger_bg_subtle,
     $danger_border_subtle,
     $danger_text_emphasis,
