@@ -19,3 +19,14 @@ This project could not be built without the following:
 1. [Bootstrap 5.3.3](https://github.com/twbs/bootstrap)
 2. [Popper 2.9.2](https://www.npmjs.com/package/popper.js)
 3. [jQuery 3.7.1](https://jquery.com/)
+4. [MySQL](https://www.mysql.com/)
+5. [Apache](https://httpd.apache.org/)
+
+## Stack
+
+Using XAMPP:
+
+- Front-end: HTML, CSS, JS (Bootstrap & jQuery)
+- Back-end: Vanilla PHP
+- Database: SQL (MySQL)
+- Web Server: Apache
