@@ -51,42 +51,47 @@ include_once "include/base.php";
 
 ?>
 
-<?php if($_SESSION['role']=="admin"): ?>
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <div class="card" style="width: 100%">
-                    <div class="card-header">
-                        <h1  class="text-center card-title">Upload Files</h1>
-                    </div>
-                    <div class="card-body">    
-                        <form action=""  enctype="multipart/form-data" method="POST">
-                            <input class="form-control" type="file" name="file" required> <br>
-                            <button name="upload" type="submit" class="btn btn-success">UPLOAD</button>
-                        </form>
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
 
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <div class="card" style="width: 100%">
-                    <div class="card-header">
-                        <h1  class="text-center card-title">File Download</h1>
-                    </div>
-                    <?php foreach ($result as $file): ?>
-                        <?php $file_path = 'uploads/' . $file['files'];?>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>"><?php echo $file['files']; ?></a></li>
-                        </ul>
-                    <?php endforeach; ?>
+<article>
+    <?php if($_SESSION['role']=="admin"): ?>
+    <section class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="card" style="width: 100%">
+                        <div class="card-header">
+                            <h1  class="text-center card-title">Upload Files</h1>
+                        </div>
+                        <div class="card-body">    
+                            <form action=""  enctype="multipart/form-data" method="POST">
+                                <input class="form-control" type="file" name="file" required> <br>
+                                <button name="upload" type="submit" class="btn btn-success">UPLOAD</button>
+                            </form>
+                        </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <?php endif; ?>
+    <section class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="card" style="width: 100%">
+                        <div class="card-header">
+                            <h1  class="text-center card-title">File Download</h1>
+                        </div>
+                        <?php foreach ($result as $file): ?>
+                            <?php $file_path = 'uploads/' . $file['files'];?>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>"><?php echo $file['files']; ?></a></li>
+                            </ul>
+                        <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+
+
 
 <?php include_once "include/footer.php"; ?>
