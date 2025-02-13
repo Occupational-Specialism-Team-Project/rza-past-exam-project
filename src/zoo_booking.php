@@ -320,7 +320,7 @@ include_once "include/base.php";
                         <div class="row mb-4">
                             <div class="mb-3 col-md-6">
                                 <label for="start_datetime" class="form-label">Start date and time:</label>
-                                <input type="datetime-local" class="form-control" id="start_datetime" name="start_datetime" required oninput="validateZooBooking()">
+                                <input type="datetime-local" class="form-control" id="start_datetime" name="start_datetime" required oninput="validateZooBooking()" min="<?=date("Y-m-d\Th:i")?>">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -330,7 +330,7 @@ include_once "include/base.php";
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="end_datetime" class="form-label">End date and time:</label>
-                                <input type="datetime-local" class="form-control" id="end_datetime" name="end_datetime" required oninput="validateZooBooking()">
+                                <input type="datetime-local" class="form-control" id="end_datetime" name="end_datetime" required oninput="validateZooBooking()" min="<?=date("Y-m-d\Th:i")?>">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -392,7 +392,7 @@ include_once "include/base.php";
                         <div class="row mb-4">
                             <div class="mb-3 col-md-6">
                                 <label for="month" class="form-label">Select a month:</label>
-                                <input type="month" class="form-control" id="month" name="month" min="1" required
+                                <input type="month" class="form-control" id="month" name="month" min="<?=date("Y-m")?>" value="<?=date("Y-m")?>" required
                                 onchange="get_booked_days(this.value, document.getElementById('potential_visitors').value, function(data) {
                                     createDays(data);
                                 });">
