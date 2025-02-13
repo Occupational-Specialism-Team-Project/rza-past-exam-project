@@ -2,7 +2,13 @@
 
 ## Description
 
+### Context
+
 This is for the Occupational Specialism group project on a past exam paper (RZA Summer 2024).
+
+### Scenario
+
+Riget Zoo Adventures is a business that offers a safari-style wildlife zoo, an on-site hotel, and educational visits. This website is to allow customers to access help and information, book tickets for the zoo and reservations for the hotel, and also to provide educational materials.
 
 ## Instructions
 
