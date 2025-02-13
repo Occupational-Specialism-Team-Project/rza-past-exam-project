@@ -444,7 +444,7 @@ include_once "include/base.php";
                         <div class="row mb-4">
                             <div class="mb-3 col-md-12">
                                 <label for="booking_key" class="form-label">Enter customer's booking key</label>
-                                <input type="number" class="form-control" id="booking_key" name="booking_key" required onchange="validateZooTicket()">
+                                <input type="number" class="form-control" id="booking_key" name="booking_key" required onchange="validateZooTicket()" min="1" max="999999999">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -454,7 +454,7 @@ include_once "include/base.php";
                             </div>
                             <div class="mb-3 col-md-12">
                                 <label for="number_of_people" class="form-label">Enter number of people waiting to be let in:</label>
-                                <input type="number" class="form-control" id="number_of_people" name="number_of_people" required onchange="validateZooTicket()">
+                                <input type="number" class="form-control" id="number_of_people" name="number_of_people" required onchange="validateZooTicket()" min="1" max="<?=MAX_ZOO_VISITORS?>">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
