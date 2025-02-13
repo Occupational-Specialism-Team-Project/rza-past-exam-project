@@ -41,18 +41,23 @@ if(!empty($_SESSION['role'])){
 
 $select_files ="SELECT * FROM materials";
 function selectAll($selectAllQuery){
+    $operation = [
+        "result" => "",
+        "error" => ""
+    ];
+
     try{
       global $pdo; // Use the global $conn from config.php
   
       $stmt = $pdo->prepare($selectAllQuery);
       $stmt->execute();
-      return $stmt->fetchAll(); //return all the rows fetched
-  
+      $operation["result"] = $stmt->fetchAll(); //return all the rows fetched
     }catch(PDOException $e){
   
-      echo "Select error" .  $e->getMessage();
-     
+      $operation["error"] = $e->getMessage();
     }
+
+    return $operation;
 }  
 $selectAll=selectAll($select_files);
 
@@ -82,12 +87,12 @@ include_once "include/base.php";
                                     $insertpdo["error"] ??= FALSE;
                                 ?>
                                 <?php if(isset($insertpdo)):?>
-                                <?php if($insertpdo["error"]):?>
-                                    <div class="alert alert-danger" role="alert"><?php echo($insertpdo["error"]) ?></div>
-                                    <?php elseif($insertpdo["result"]):  ?>
+                                    <?php if($insertpdo["error"]):?>
+                                        <div class="alert alert-danger" role="alert"><?php echo($insertpdo["error"]) ?></div>
+                                    <?php elseif(isset($insertpdo["result"])):  ?>
                                         <div class="alert alert-success" role="alert">File uploaded successfully!</div>
                                     <?php endif; ?>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                             </form>
                         </div>
                 </div>
@@ -103,12 +108,23 @@ include_once "include/base.php";
                         <div class="card-header">
                             <h1  class="text-center card-title">File Download</h1>
                         </div>
-                        <?php foreach ($result as $file): ?>
-                            <?php $file_path = 'uploads/' . $file['files'];?>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>"><?php echo $file['files']; ?></a></li>
-                            </ul>
-                        <?php endforeach; ?>
+                        <div class="card-body">
+                            <?php if(isset($selectAll)):?>
+                                <?php if($selectAll["error"]):?>
+                                    <div class="alert alert-danger" role="alert"><?php echo($selectAll["error"]) ?></div>
+                                <?php elseif($selectAll["result"]):  ?>
+                                    <?php foreach ($selectAll["result"] as $file): ?>
+                                        <?php $file_path = 'uploads/' . $file['files'];?>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>"><?php echo $file['files']; ?></a></li>
+                                        </ul>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="alert alert-info" role="alert">No files found!</div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                        
                 </div>
             </div>
         </div>
