@@ -16,6 +16,6 @@ This is for the Occupational Specialism group project on a past exam paper (RZA 
 
 This project could not be built without the following:
 
-1. [Boostrap 5.3.3](https://github.com/twbs/bootstrap)
+1. [Bootstrap 5.3.3](https://github.com/twbs/bootstrap)
 2. [Popper 2.9.2](https://www.npmjs.com/package/popper.js)
 3. [jQuery 3.7.1](https://jquery.com/)
