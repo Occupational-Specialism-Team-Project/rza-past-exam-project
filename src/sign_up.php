@@ -3,12 +3,17 @@ require_once "include/utils.php";
 function insertpdo($insertdataquery , $bind_parameter){
     try{
         global $pdo; 
+    
         $stmt = $pdo->prepare($insertdataquery);
         $stmt->execute($bind_parameter);
         return $stmt ;
+    
       }catch(PDOException $e){
+    
         echo "insert error" .  $e->getMessage();
+       
       }
+
 }
 if(isset($_POST['login'])){
     $username=$_POST['username'];
