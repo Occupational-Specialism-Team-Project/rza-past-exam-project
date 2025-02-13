@@ -1,4 +1,3 @@
-
 <?php
 require_once "include/utils.php";
 function insertpdo($insertdataquery , $bind_parameter){
@@ -68,7 +67,6 @@ include_once "include/base.php";
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card" style="width: 100%">
-                <form method = "post" >
                     <div class="card-header">
                         <h1  class="text-center card-title">Upload Files</h1>
                     </div>
@@ -78,21 +76,16 @@ include_once "include/base.php";
                             <button name="upload" type="submit">UPLOAD</button>
                         </form>
                     </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
 <?php endif; ?>
 
-
-
-
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card" style="width: 100%">
-                <form method = "post" >
                     <div class="card-header">
                         <h1  class="text-center card-title">File Download</h1>
                     </div>
@@ -102,12 +95,7 @@ include_once "include/base.php";
                             <li class="list-group-item"><a href="<?php echo $file_path; ?>" download="<?php echo $file['files']; ?>"><?php echo $file['files']; ?></a></li>
                         </ul>
                     <?php endforeach; ?>
-                </form>
             </div>
         </div>
     </div>
 </div>
-
-
-</body>
-</html>
