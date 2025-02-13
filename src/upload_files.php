@@ -16,8 +16,9 @@ function insertpdo($insertdataquery , $bind_parameter){
 
     return $operation;
 }
-$username=$_SESSION['role'];
-if($_SESSION['role']=="admin"){
+if(!empty($_SESSION['role'])){
+    $username=$_SESSION['role'];
+ if($_SESSION['role']=="admin"){
     if(isset($_POST['upload'])){
         $file_name= $_FILES['file']['name'];
         $tmp_location_name = $_FILES['file']['tmp_name'];
@@ -35,6 +36,9 @@ if($_SESSION['role']=="admin"){
         }
     }
 }
+
+}
+
 $select_files ="SELECT * FROM materials";
 function selectAll($selectAllQuery){
     try{
@@ -59,7 +63,8 @@ include_once "include/base.php";
 
 
 <article>
-    <?php if($_SESSION['role']=="admin"): ?>
+    <?php if(!empty($_SESSION['role'])):?>
+     <?php if($_SESSION['role']=="admin"): ?>
     <section class="container-fluid mt-5">
         <div class="row">
             <div class="col-md-4 mx-auto">
@@ -77,6 +82,7 @@ include_once "include/base.php";
             </div>
         </div>
     </section>
+    <?php endif; ?>
     <?php endif; ?>
     <section class="container-fluid mt-5">
         <div class="row">
