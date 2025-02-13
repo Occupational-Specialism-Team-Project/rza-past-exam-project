@@ -184,13 +184,17 @@ function book_zoo_visit($username, $start_datetime, $end_datetime, $number_of_pe
 
 function verify_ticket($number_of_people, $booking_key, $pdo) {
     $fetch = new Fetch();
+    $current_time = time();
 
     if (! $number_of_people) { // Presence Check
         $fetch->error = "You must present the number of visitors.";
 
         return $fetch;
-    }
-    if (! $booking_key) { // Presence Check
+    } elseif ($number_of_people <= 0) {
+        $fetch->error = "You must present a positive integer that is not 0.";
+
+        return $fetch;
+    } elseif (! $booking_key) { // Presence Check
         $fetch->error = "You must present the booking key.";
 
         return $fetch;
@@ -198,18 +202,30 @@ function verify_ticket($number_of_people, $booking_key, $pdo) {
 
     try {
         $verify_ticket = $pdo->prepare(
-            "SELECT zoo_booking_id, active FROM zoo_bookings
-            WHERE (NOW() BETWEEN start_datetime AND end_datetime)
-            AND (booking_key = :booking_key)
-            AND (:number_of_people <= number_of_people)"
+            "SELECT zoo_booking_id, start_datetime, end_datetime, number_of_people, active FROM zoo_bookings
+            WHERE (booking_key = :booking_key)"
         );
         $verify_ticket->execute([
-            "number_of_people" => $number_of_people,
             "booking_key" => $booking_key
         ]);
         $ticket_verified = $verify_ticket->fetch();
 
         $fetch->result = $ticket_verified;
+
+        if ($current_time < strtotime($ticket_verified["start_datetime"])) {
+            $fetch->error = "The ticket is only valid from {$ticket_verified["start_datetime"]}";
+
+            return $fetch;
+        } else if ($current_time > strtotime($ticket_verified["end_datetime"])) {
+            $fetch->error = "The ticket has expired (end date is {$ticket_verified["end_datetime"]}).";
+
+            return $fetch;
+        } else if ($number_of_people > $ticket_verified["number_of_people"]) {
+            $fetch->error = "The ticket is only valid for a maximum of {$ticket_verified["number_of_people"]} people.";
+
+            return $fetch;
+        }
+
     } catch (Exception $e) {
         $fetch->error = $e;
     }
