@@ -202,7 +202,7 @@ function verify_ticket($number_of_people, $booking_key, $pdo) {
 
     try {
         $verify_ticket = $pdo->prepare(
-            "SELECT zoo_booking_id, start_datetime, end_datetime, number_of_people, active FROM zoo_bookings
+            "SELECT zoo_booking_id, start_datetime, end_datetime, number_of_people, booking_key, active FROM zoo_bookings
             WHERE (booking_key = :booking_key)"
         );
         $verify_ticket->execute([
@@ -211,8 +211,10 @@ function verify_ticket($number_of_people, $booking_key, $pdo) {
         $ticket_verified = $verify_ticket->fetch();
 
         $fetch->result = $ticket_verified;
+        if (! $ticket_verified) {
+            $fetch->error = "A ticket with that booking key ($booking_key) does not exist.";
 
-        if ($current_time < strtotime($ticket_verified["start_datetime"])) {
+        } else if ($current_time < strtotime($ticket_verified["start_datetime"])) {
             $fetch->error = "The ticket is only valid from {$ticket_verified["start_datetime"]}";
 
             return $fetch;
