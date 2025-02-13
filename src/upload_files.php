@@ -50,7 +50,7 @@ $result=selectAll($select_files);
 
 ?>
 <?php
-const PAGE_TITLE = "Learning Material";
+const PAGE_TITLE = "Learning Materials";
 include_once "include/base.php";
 ?>
 <!DOCTYPE html>
@@ -71,7 +71,7 @@ include_once "include/base.php";
                     </div>
                     <div class="card-body">    
                         <form action=""  enctype="multipart/form-data" method="POST">
-                            <input class="form-control" type="file" name="file"> <br>
+                            <input class="form-control" type="file" name="file" required> <br>
                             <button name="upload" type="submit" class="btn btn-success">UPLOAD</button>
                         </form>
                     </div>
