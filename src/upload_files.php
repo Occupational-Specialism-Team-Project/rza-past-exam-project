@@ -10,8 +10,6 @@ function insertpdo($insertdataquery , $bind_parameter){
         echo "insert error" .  $e->getMessage();
       }
 }
-echo($_SESSION['role']);
-echo($_SESSION['user']);
 $username=$_SESSION['role'];
 if($_SESSION['role']=="admin"){
     if(isset($_POST['upload'])){
