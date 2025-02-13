@@ -444,11 +444,23 @@ include_once "include/base.php";
                         <div class="row mb-4">
                             <div class="mb-3 col-md-12">
                                 <label for="booking_key" class="form-label">Enter customer's booking key</label>
-                                <input type="number" class="form-control" id="booking_key" name="booking_key" required>
+                                <input type="number" class="form-control" id="booking_key" name="booking_key" required onchange="validateZooTicket()">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback" id="booking_key_feedback">
+
+                                </div>
                             </div>
                             <div class="mb-3 col-md-12">
                                 <label for="number_of_people" class="form-label">Enter number of people waiting to be let in:</label>
-                                <input type="number" class="form-control" id="number_of_people" name="number_of_people" required>
+                                <input type="number" class="form-control" id="number_of_people" name="number_of_people" required onchange="validateZooTicket()">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback" id="number_of_people_feedback">
+
+                                </div>
                             </div>
                         </div>
 

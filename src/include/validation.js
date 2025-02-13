@@ -55,6 +55,39 @@ function validateZooBooking() {
     }
 }
 
+function validateZooTicket() {
+    // Get <input> elements
+    let numberOfPeople = $("#number_of_people");
+
+    if (numberOfPeople) {
+        console.log(numberOfPeople);
+        if (numberOfPeople.val() == "") { // Presence Check
+            showValidationMessage(numberOfPeople, "You must present the number of visitors.");
+        } else if (numberOfPeople.val() <= 0) { // Length Check
+            showValidationMessage(numberOfPeople, "You must present a positive integer that is not 0.");
+        } else {
+            showValidationMessage(numberOfPeople);
+        }
+    } else {
+        console.error("numberOfPeople input not found!")
+    }
+
+    let bookingKey = $("#booking_key");
+
+    if (bookingKey) {
+        if (bookingKey.val() == "") { // Presence Check
+            showValidationMessage(bookingKey, "You must present the booking key.");
+        } else if (bookingKey.val() <= 0) { // Length Check
+            showValidationMessage(bookingKey, "You must present a positive integer that is not 0.");
+        } else {
+            showValidationMessage(bookingKey);
+        }
+    } else {
+        console.error("bookingKey input not found!")
+    }
+    
+}
+
 function showValidationMessage(inputElement, error_message) {
     // Get the feedback <div> that corresponds to the <input> element
     try {
