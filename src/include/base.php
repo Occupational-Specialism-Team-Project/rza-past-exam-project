@@ -52,6 +52,7 @@ if ($username) {
         <?php if ($script == "zoo_booking.php"): ?>
             <link rel="stylesheet" href="include/calendar.css">
         <?php endif ?>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-forced-colors-css@1.0.7/css/bootstrap-forced-colors.min.css" media="screen and (forced-colors: active)">
         <!-- Add extra <link> elements here, such as CSS -->
         <!-- For example: -->
 
