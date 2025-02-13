@@ -1,14 +1,20 @@
 <?php
 require_once "include/utils.php";
 function insertpdo($insertdataquery , $bind_parameter){
+    $operation = [
+        "result" => "",
+        "error" => ""
+    ];
+
     try{
         global $pdo; 
         $stmt = $pdo->prepare($insertdataquery);
-        $stmt->execute($bind_parameter);
-        return $stmt ;
-      }catch(PDOException $e){
-        echo "insert error" .  $e->getMessage();
-      }
+        $operation["result"] = $stmt->execute($bind_parameter);
+    } catch(PDOException $e){
+        $operation["error"] = $e->getMessage();
+    }
+
+    return $operation;
 }
 $username=$_SESSION['role'];
 if($_SESSION['role']=="admin"){
@@ -22,7 +28,7 @@ if($_SESSION['role']=="admin"){
                 ':my_file' => $file_name,
                 ':username'=> $username
             );
-            $result = insertpdo($insert_file, $bind_parameter);
+            $insertpdo = insertpdo($insert_file, $bind_parameter);
             
         }else{
             echo"Error in moving the file";
@@ -44,7 +50,7 @@ function selectAll($selectAllQuery){
      
     }
 }  
-$result=selectAll($select_files);
+$selectAll=selectAll($select_files);
 
 const PAGE_TITLE = "Learning Materials";
 include_once "include/base.php";
