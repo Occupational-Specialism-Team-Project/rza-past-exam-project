@@ -10,7 +10,8 @@ function insertpdo($insertdataquery , $bind_parameter){
         echo "insert error" .  $e->getMessage();
       }
 }
-$_SESSION['role']="admin";
+echo($_SESSION['role']);
+echo($_SESSION['user']);
 $username=$_SESSION['role'];
 if($_SESSION['role']=="admin"){
     if(isset($_POST['upload'])){
@@ -51,7 +52,7 @@ $result=selectAll($select_files);
 
 ?>
 <?php
-const PAGE_TITLE = "materials download Page";
+const PAGE_TITLE = "Learning Material";
 include_once "include/base.php";
 ?>
 <!DOCTYPE html>
@@ -59,7 +60,7 @@ include_once "include/base.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Learning Material</title>
 </head>
 <body>
 <?php if($_SESSION['role']=="admin"): ?>
@@ -72,8 +73,8 @@ include_once "include/base.php";
                     </div>
                     <div class="card-body">    
                         <form action=""  enctype="multipart/form-data" method="POST">
-                            <input type="file" name="file">
-                            <button name="upload" type="submit">UPLOAD</button>
+                            <input class="form-control" type="file" name="file"> <br>
+                            <button name="upload" type="submit" class="btn btn-success">UPLOAD</button>
                         </form>
                     </div>
             </div>
