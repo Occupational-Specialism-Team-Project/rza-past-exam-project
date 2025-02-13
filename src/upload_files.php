@@ -32,7 +32,7 @@ if(!empty($_SESSION['role'])){
             $insertpdo = insertpdo($insert_file, $bind_parameter);
             
         }else{
-            echo"Error in moving the file";
+            $insertpdo["error"]="failed to move file";
         }
     }
 }
@@ -75,7 +75,19 @@ include_once "include/base.php";
                         <div class="card-body">    
                             <form action=""  enctype="multipart/form-data" method="POST">
                                 <input class="form-control" type="file" name="file" required> <br>
-                                <button name="upload" type="submit" class="btn btn-success">UPLOAD</button>
+                                <button name="upload" type="submit" class="btn btn-success mb-3">UPLOAD</button>
+                                <?php
+                                    $insertpdo_error = isset($insertpdo["error"]) ? $insertpdo["error"] : FALSE;
+                                    $insertpdo_error = $insertpdo["error"] ?? FALSE;
+                                    $insertpdo["error"] ??= FALSE;
+                                ?>
+                                <?php if(isset($insertpdo)):?>
+                                <?php if($insertpdo["error"]):?>
+                                    <div class="alert alert-danger" role="alert"><?php echo($insertpdo["error"]) ?></div>
+                                    <?php elseif($insertpdo["result"]):  ?>
+                                        <div class="alert alert-success" role="alert">File uploaded successfully!</div>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
                             </form>
                         </div>
                 </div>
