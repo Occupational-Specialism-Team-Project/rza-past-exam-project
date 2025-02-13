@@ -7,6 +7,11 @@ function redirect($url) {
     exit();
 }
 
+class Fetch {
+    public $result;
+    public $error;
+}
+
 require_once "connect.php";
 
 if ((session_status() !== PHP_SESSION_ACTIVE) and (session_status() === PHP_SESSION_NONE)) {
@@ -16,3 +21,5 @@ if ((session_status() !== PHP_SESSION_ACTIVE) and (session_status() === PHP_SESS
         redirect("error.php");
     }
 }
+
+require "settings.php";
