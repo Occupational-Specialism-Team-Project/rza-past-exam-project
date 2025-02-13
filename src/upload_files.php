@@ -46,21 +46,11 @@ function selectAll($selectAllQuery){
 }  
 $result=selectAll($select_files);
 
-
-
-?>
-<?php
 const PAGE_TITLE = "Learning Materials";
 include_once "include/base.php";
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Material</title>
-</head>
-<body>
+
 <?php if($_SESSION['role']=="admin"): ?>
 <div class="container-fluid mt-5">
     <div class="row">
@@ -98,3 +88,5 @@ include_once "include/base.php";
         </div>
     </div>
 </div>
+
+<?php include_once "include/footer.php"; ?>
