@@ -112,20 +112,16 @@ if($_SESSION["user"] == false) {
 
 
 
+$booking_start_date = $_POST['booking_start_date'] ?? NULL;
+$booking_end_date = $_POST['booking_end_date'] ?? NULL;
 
 // when the user inputs both a valid start date and end date
-if(isset($_POST["booking_start_date"])) {
-    // get the users chosen dates
-    $booking_start_date = $_POST['booking_start_date'];
-    $booking_end_date = $_POST['booking_end_date'];
-
-    // go through each room number and for each room number find out if it is available on the users chosen date
-    $room1_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 1);
-    $room2_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 2);
-    $room3_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 3);
-    $room4_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 4);
-    $room5_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 5);
-}
+// go through each room number and for each room number find out if it is available on the users chosen date
+$room1_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 1);
+$room2_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 2);
+$room3_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 3);
+$room4_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 4);
+$room5_availabe = room_check($pdo, $booking_start_date, $booking_end_date, 5);
 
 
 
