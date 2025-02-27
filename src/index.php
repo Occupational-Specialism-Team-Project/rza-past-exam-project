@@ -24,19 +24,19 @@ include_once "include/base.php";
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="images/lion_image.jpg" class="d-block min-vh-25 w-100 mx-auto rounded-5" alt="Photo of a lion standing on a tree branch">
-                                <div class="carousel-caption d-none d-md-block">
+                                <div class="carousel-caption d-none d-md-block text-white">
                                     <p>Take a look at some of our majestic lions!</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="images/parrot_image.jpg" class="d-block min-vh-25 w-100 mx-auto rounded-5" alt="Photo of a red macaw from the side">
-                                <div class="carousel-caption d-none d-md-block">
+                                <div class="carousel-caption d-none d-md-block text-white">
                                     <p>Introducing the new red macaw!</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="images/hippo_image.jpg" class="d-block min-vh-25 w-100 mx-auto rounded-5" alt="Photo of an adult hippopotamus and baby hippopotamus eating from the ground">
-                                <div class="carousel-caption d-none d-md-block">
+                                <div class="carousel-caption d-none d-md-block text-white">
                                     <p>We also have hippopotamuses.</p>
                                 </div>
                             </div>
