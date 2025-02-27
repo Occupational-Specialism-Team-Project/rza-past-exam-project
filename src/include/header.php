@@ -19,7 +19,7 @@
                         <a class="nav-link<?php if (PAGE_TITLE == "Example Template"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Example Template"): echo "aria-current='page'"; endif ?> href="example_template.php">Example</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link<?php if (PAGE_TITLE == "Learning Material"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Learning Material"): echo "aria-current='page'"; endif ?> href="index.php">Learning Material</a>
+                        <a class="nav-link<?php if (PAGE_TITLE == "Learning Materials"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Learning Materials"): echo "aria-current='page'"; endif ?> href="upload_files.php">Learning Materials</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle<?php if (PAGE_TITLE == "Zoo Booking" or PAGE_TITLE == "Zoo Tickets" or PAGE_TITLE == "Hotel Booking"): echo " active"; endif ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
