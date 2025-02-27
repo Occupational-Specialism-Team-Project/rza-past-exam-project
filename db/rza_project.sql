@@ -28,8 +28,34 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `hotel_bookings` (
-  `hotel_booking_id` int(100) NOT NULL
+  `hotel_booking_id` int(100) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `arrival_date` date NOT NULL,
+  `leave_date` date NOT NULL,
+  `room_number` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hotel_bookings`
+--
+
+INSERT INTO `hotel_bookings` (`hotel_booking_id`, `username`, `arrival_date`, `leave_date`, `room_number`) VALUES
+(5, 'jayden123', '2025-01-01', '2025-01-06', 3),
+(16, 'test', '2025-01-24', '2025-01-30', 1),
+(17, 'test', '2025-02-26', '2025-02-28', 2),
+(18, 'test', '2025-02-16', '2025-02-17', 1),
+(19, 'test', '2025-02-28', '2025-03-02', 1),
+(20, 'test', '2025-02-28', '2025-03-02', 3),
+(21, 'test', '2025-02-27', '2025-02-28', 5),
+(22, 'test', '2025-02-27', '2025-02-28', 4),
+(23, 'test', '2025-03-01', '2025-03-02', 4),
+(24, 'test', '2025-03-07', '2025-03-08', 5),
+(25, 'test', '2025-03-07', '2025-03-08', 3),
+(26, 'test', '2025-03-07', '2025-03-08', 4),
+(27, 'test', '2025-03-07', '2025-03-08', 2),
+(28, 'test', '2025-03-09', '2025-04-05', 3),
+(29, 'test', '2025-03-09', '2025-03-10', 4);
+
 
 -- --------------------------------------------------------
 
@@ -188,7 +214,7 @@ ALTER TABLE `zoo_bookings_daily`
 -- AUTO_INCREMENT for table `hotel_bookings`
 --
 ALTER TABLE `hotel_bookings`
-  MODIFY `hotel_booking_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `hotel_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `visits`
