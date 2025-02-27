@@ -222,8 +222,20 @@ include_once "include/base.php";
                     </h2>
                 </div>
                 <div class="card-body">
+                    <?php if (!isset($themes->result)): ?>
+                        <p class="card-text">
+                            <div class="alert alert-info">
+                                Your created themes will appear for you to edit.
+                            </div>
+                        </p>
+                    <?php endif ?>
                     <div class="accordion" id="themesAccordion">
-                        <?php if (isset($themes->result)): ?>
+                        <?php if (! isset($themes->result)):
+                            unset($themes->result);
+                            $default_theme = get_theme(DEFAULT_THEME_USERNAME, DEFAULT_THEME_THEME_NAME, $pdo);
+                            $themes->result[0] = $default_theme->result;
+                        ?>
+                        <?php else: ?>
                             <?php foreach ($themes->result as $theme): ?>
                                 <div class="accordion-item">
                                     <h3 class="accordion-header">
