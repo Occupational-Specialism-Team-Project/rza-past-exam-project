@@ -27,7 +27,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item<?php if (PAGE_TITLE == "Zoo Booking" or PAGE_TITLE == "Zoo Tickets"): echo " active"; endif ?>" href="zoo_booking.php">Zoo</a></li>
-                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Hotel Booking"): echo " active"; endif ?>" href="#">Hotel</a></li>
+                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Hotel Booking"): echo " active"; endif ?>" href="hotel-booking.php">Hotel</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

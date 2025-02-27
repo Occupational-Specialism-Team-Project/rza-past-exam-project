@@ -28,7 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `hotel_bookings` (
-  `hotel_booking_id` int(100) NOT NULL
+  `hotel_booking_id` int(100) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `arrival_date` date NOT NULL,
+  `leave_date` date NOT NULL,
+  `room_number` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -188,7 +192,7 @@ ALTER TABLE `zoo_bookings_daily`
 -- AUTO_INCREMENT for table `hotel_bookings`
 --
 ALTER TABLE `hotel_bookings`
-  MODIFY `hotel_booking_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `hotel_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `visits`
