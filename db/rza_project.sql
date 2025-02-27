@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2025 at 09:16 PM
+-- Generation Time: Feb 13, 2025 at 11:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,6 +30,25 @@ SET time_zone = "+00:00";
 CREATE TABLE `hotel_bookings` (
   `hotel_booking_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materials`
+--
+
+CREATE TABLE `materials` (
+  `username` varchar(100) NOT NULL,
+  `files` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`username`, `files`) VALUES
+('admin', 'elephant-1421167_640 (1) (1) (1).jpg'),
+('admin', 'rice1.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,10 +85,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `role_name`) VALUES
-('admin', '$2y$10$d06denpaf61lTJgsZI5WgehMeEdK2DEmkw1BRzX/vfUB92VIol0iO', 'admin'),
-('jayden', '$2y$10$GknbdnCXX9eNeawOTCW5ruuXetGkqocWJ6lQVTvFDDq6RGje.meSS', 'customer'),
-('user', '$2y$10$ylGnyNhkCFT8iLD6tFWTXuEOsy91QJzi49ujEv5Oa2sO98GdRjK0.', 'customer'),
-('user123', '$2y$10$4AP2m34XbSXJjknnGTvFj.VG1rqGBSEkcxnbUA7ddd95qLlVf7IW.', 'customer');
+('admin', '$2y$10$2QZPdmdIdxV1QSqEMaK3me4iEsG5c3Iwc6fVPYBo/SyN.GSON7DNy', 'admin');
 
 -- --------------------------------------------------------
 
@@ -121,6 +137,12 @@ CREATE TABLE `zoo_bookings_daily` (
 --
 ALTER TABLE `hotel_bookings`
   ADD PRIMARY KEY (`hotel_booking_id`);
+
+--
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`files`);
 
 --
 -- Indexes for table `roles`
