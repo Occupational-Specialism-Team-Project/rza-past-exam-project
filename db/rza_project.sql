@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2025 at 06:00 PM
+-- Generation Time: Feb 13, 2025 at 11:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,20 +34,58 @@ CREATE TABLE `hotel_bookings` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `materials`
+--
+
+CREATE TABLE `materials` (
+  `username` varchar(100) NOT NULL,
+  `files` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`username`, `files`) VALUES
+('admin', 'elephant-1421167_640 (1) (1) (1).jpg'),
+('admin', 'rice1.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `role_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_name`) VALUES
+('admin'),
+('customer');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(64) NOT NULL
+  `password` varchar(64) NOT NULL,
+  `role_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`username`, `password`) VALUES
-('jayden123', '$2y$10$mNVJoTgJHL0FUEHo307VjOL3M.CHLnEQZeFtOoRW3wokQPnavmP46');
+INSERT INTO `users` (`username`, `password`, `role_name`) VALUES
+('admin', '$2y$10$2QZPdmdIdxV1QSqEMaK3me4iEsG5c3Iwc6fVPYBo/SyN.GSON7DNy', 'admin');
 
 -- --------------------------------------------------------
 
@@ -73,7 +111,21 @@ CREATE TABLE `zoo_bookings` (
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime NOT NULL,
   `number_of_people` int(100) NOT NULL DEFAULT 1,
-  `educational_visit` tinyint(1) NOT NULL DEFAULT 0
+  `educational_visit` tinyint(1) NOT NULL,
+  `booking_key` varchar(64) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zoo_bookings_daily`
+--
+
+CREATE TABLE `zoo_bookings_daily` (
+  `zoo_booking_daily_id` int(100) NOT NULL,
+  `zoo_booking_id` int(100) NOT NULL,
+  `day` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -87,25 +139,46 @@ ALTER TABLE `hotel_bookings`
   ADD PRIMARY KEY (`hotel_booking_id`);
 
 --
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`files`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`role_name`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `role` (`role_name`);
 
 --
 -- Indexes for table `visits`
 --
 ALTER TABLE `visits`
   ADD PRIMARY KEY (`visit_id`),
-  ADD KEY `visits_zoo_booking_id` (`zoo_booking_id`),
-  ADD KEY `visits_hotel_booking_id` (`hotel_booking_id`);
+  ADD KEY `visits_hotel_booking_id` (`hotel_booking_id`),
+  ADD KEY `visits_zoo_booking_id` (`zoo_booking_id`);
 
 --
 -- Indexes for table `zoo_bookings`
 --
 ALTER TABLE `zoo_bookings`
   ADD PRIMARY KEY (`zoo_booking_id`),
+  ADD UNIQUE KEY `booking_key` (`booking_key`),
   ADD KEY `zoo_booking_username` (`username`);
+
+--
+-- Indexes for table `zoo_bookings_daily`
+--
+ALTER TABLE `zoo_bookings_daily`
+  ADD PRIMARY KEY (`zoo_booking_daily_id`),
+  ADD KEY `daily_zoo_booking_to_zoo_booking` (`zoo_booking_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -127,11 +200,23 @@ ALTER TABLE `visits`
 -- AUTO_INCREMENT for table `zoo_bookings`
 --
 ALTER TABLE `zoo_bookings`
-  MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT for table `zoo_bookings_daily`
+--
+ALTER TABLE `zoo_bookings_daily`
+  MODIFY `zoo_booking_daily_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `role` FOREIGN KEY (`role_name`) REFERENCES `roles` (`role_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `visits`
@@ -145,6 +230,12 @@ ALTER TABLE `visits`
 --
 ALTER TABLE `zoo_bookings`
   ADD CONSTRAINT `zoo_booking_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `zoo_bookings_daily`
+--
+ALTER TABLE `zoo_bookings_daily`
+  ADD CONSTRAINT `daily_zoo_booking_to_zoo_booking` FOREIGN KEY (`zoo_booking_id`) REFERENCES `zoo_bookings` (`zoo_booking_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
