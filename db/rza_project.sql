@@ -85,13 +85,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `role_name`) VALUES
-('1', '$2y$10$dQgKMLCOUKMX161/jxK/NeXn64cjnwBHfzGY/WiUVrU1ETsggtRia', 'customer'),
-('2', '$2y$10$ELTKmNfmpo5I2hV6Jz6Nf.kzi1TkPZEMnfseRmCJYGimdRV.cqH82', 'customer'),
-('3', '$2y$10$QQq3Nw1gYGkQmZ8r5tTlLupnN7scm/5W5Og4CI7FWQiqtmvtUqdIC', 'customer'),
-('admin', '$2y$10$2QZPdmdIdxV1QSqEMaK3me4iEsG5c3Iwc6fVPYBo/SyN.GSON7DNy', 'admin'),
-('jayden', '$2y$10$GknbdnCXX9eNeawOTCW5ruuXetGkqocWJ6lQVTvFDDq6RGje.meSS', 'customer'),
-('user', '$2y$10$ylGnyNhkCFT8iLD6tFWTXuEOsy91QJzi49ujEv5Oa2sO98GdRjK0.', 'customer'),
-('user123', '$2y$10$4AP2m34XbSXJjknnGTvFj.VG1rqGBSEkcxnbUA7ddd95qLlVf7IW.', 'customer');
+('admin', '$2y$10$2QZPdmdIdxV1QSqEMaK3me4iEsG5c3Iwc6fVPYBo/SyN.GSON7DNy', 'admin');
 
 -- --------------------------------------------------------
 
@@ -122,15 +116,6 @@ CREATE TABLE `zoo_bookings` (
   `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `zoo_bookings`
---
-
-INSERT INTO `zoo_bookings` (`zoo_booking_id`, `username`, `start_datetime`, `end_datetime`, `number_of_people`, `educational_visit`, `booking_key`, `active`) VALUES
-(63, 'jayden', '2025-02-12 09:19:00', '2025-02-18 09:19:00', 10, 0, '153665096', 0),
-(64, '1', '2025-02-12 09:21:00', '2025-02-18 09:21:00', 9, 0, '991137745', 0),
-(65, '2', '2025-02-11 09:27:00', '2025-02-11 09:32:00', 6, 0, '803555501', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -142,28 +127,6 @@ CREATE TABLE `zoo_bookings_daily` (
   `zoo_booking_id` int(100) NOT NULL,
   `day` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `zoo_bookings_daily`
---
-
-INSERT INTO `zoo_bookings_daily` (`zoo_booking_daily_id`, `zoo_booking_id`, `day`) VALUES
-(553, 63, '2025-02-12'),
-(554, 63, '2025-02-13'),
-(555, 63, '2025-02-14'),
-(556, 63, '2025-02-15'),
-(557, 63, '2025-02-16'),
-(558, 63, '2025-02-17'),
-(559, 63, '2025-02-18'),
-(560, 64, '2025-02-12'),
-(561, 64, '2025-02-13'),
-(562, 64, '2025-02-14'),
-(563, 64, '2025-02-15'),
-(564, 64, '2025-02-16'),
-(565, 64, '2025-02-17'),
-(566, 64, '2025-02-18'),
-(567, 65, '2025-02-11'),
-(568, 65, '2025-02-12');
 
 --
 -- Indexes for dumped tables
@@ -237,13 +200,13 @@ ALTER TABLE `visits`
 -- AUTO_INCREMENT for table `zoo_bookings`
 --
 ALTER TABLE `zoo_bookings`
-  MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `zoo_booking_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `zoo_bookings_daily`
 --
 ALTER TABLE `zoo_bookings_daily`
-  MODIFY `zoo_booking_daily_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=569;
+  MODIFY `zoo_booking_daily_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- Constraints for dumped tables

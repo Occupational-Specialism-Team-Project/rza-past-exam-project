@@ -22,12 +22,12 @@
                         <a class="nav-link<?php if (PAGE_TITLE == "Learning Materials"): echo " active"; endif ?>" <?php if (PAGE_TITLE == "Learning Materials"): echo "aria-current='page'"; endif ?> href="upload_files.php">Learning Materials</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle<?php if (PAGE_TITLE == "Zoo Bookings" or PAGE_TITLE == "Hotel Bookings"): echo " active"; endif ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle<?php if (PAGE_TITLE == "Zoo Booking" or PAGE_TITLE == "Zoo Tickets" or PAGE_TITLE == "Hotel Booking"): echo " active"; endif ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Bookings
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Zoo Bookings"): echo " active"; endif ?>" href="#">Zoo</a></li>
-                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Hotel Bookings"): echo " active"; endif ?>" href="#">Hotel</a></li>
+                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Zoo Booking" or PAGE_TITLE == "Zoo Tickets"): echo " active"; endif ?>" href="zoo_booking.php">Zoo</a></li>
+                            <li><a class="dropdown-item<?php if (PAGE_TITLE == "Hotel Booking"): echo " active"; endif ?>" href="#">Hotel</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
